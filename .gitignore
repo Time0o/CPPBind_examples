@@ -3,6 +3,3 @@ wrap/*
 !wrap/*.tcc
 !wrap/*_type_translation_rules.py
 !wrap/output/.gitkeep
-
-**/bind
-!**/bind/.gitkeep
