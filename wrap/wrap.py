@@ -73,7 +73,7 @@ if __name__ == '__main__':
                template_instantiations='rm.tcc'),
     ]
 
-    for backend in ['c']:
+    for backend in ['c', 'lua']:
         cppbind_args = [
             'cppbind',
             '--backend', backend
@@ -95,13 +95,18 @@ if __name__ == '__main__':
             '--wrap-macro-constants',
             '--wrap-skip-unwrappable',
             '--wrap-noexcept',
-            '--output-custom-type-translation-rules', f'{backend}_type_translation_rules.py',
             '--output-directory', f'../server/src/{backend}/bind',
             '--output-cpp-header-extension', '.h',
             '--output-cpp-source-extension', '.cc',
             '--lua-include-cpp',
             '--verbosity', '2',
-            '--'
         ]
+
+        tt_rules = f'{backend}_type_translation_rules.py'
+
+        if os.path.exists(tt_rules):
+            cppbind_args += ['--output-custom-type-translation-rules', tt_rules]
+
+        cppbind_args.append('--')
 
         subprocess.run(cppbind_args, check=True)
