@@ -14,7 +14,7 @@ extern "C" {
 
 #include "/home/timo/github/l4re/l4/pkg/l4re-c-examples/server/src/c/bind/ipc_types_c.h"
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_1(l4_cap_idx_t cap)
+l4_cap_idx_t l4_ipc_cap_dataspace_new_1(l4_cap_idx_t cap)
 {
   using namespace L4;
   using namespace Ipc;
@@ -35,7 +35,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_1(l4_cap_idx_t cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_2(void)
+l4_cap_idx_t l4_ipc_cap_dataspace_new_2(void)
 {
   using namespace L4;
   using namespace Ipc;
@@ -51,7 +51,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_2(void)
   return __ret;
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_3(l4_cap_idx_t cap, unsigned char rights)
+l4_cap_idx_t l4_ipc_cap_dataspace_new_3(l4_cap_idx_t cap, unsigned char rights)
 {
   using namespace L4;
   using namespace Ipc;
@@ -75,7 +75,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_3(l4_cap_idx_t cap, unsigned char ri
   return __ret;
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_from_ci(l4_cap_idx_t c)
+l4_cap_idx_t l4_ipc_cap_dataspace_from_ci(l4_cap_idx_t c)
 {
   using namespace L4;
   using namespace Ipc;
@@ -84,7 +84,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_from_ci(l4_cap_idx_t c)
 
   _c = c;
 
-  auto __out = L4::Ipc::Cap_L4Re_Dataspace::from_ci(_c);
+  auto __out = L4::Ipc::Cap_Dataspace::from_ci(_c);
 
   l4_cap_idx_t __ret;
 
@@ -93,7 +93,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_from_ci(l4_cap_idx_t c)
   return __ret;
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_ipc_cap_dataspace_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
   using namespace Ipc;
@@ -112,7 +112,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-unsigned int l4_ipc_cap_l4_re_dataspace_rights(l4_cap_idx_t __self)
+unsigned int l4_ipc_cap_dataspace_rights(l4_cap_idx_t __self)
 {
   using namespace L4;
   using namespace Ipc;
@@ -131,7 +131,7 @@ unsigned int l4_ipc_cap_l4_re_dataspace_rights(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_ipc_cap_l4_re_dataspace_is_valid(l4_cap_idx_t __self)
+int l4_ipc_cap_dataspace_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
   using namespace Ipc;
@@ -150,7 +150,7 @@ int l4_ipc_cap_l4_re_dataspace_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_copy(l4_cap_idx_t _1)
+l4_cap_idx_t l4_ipc_cap_dataspace_copy(l4_cap_idx_t _1)
 {
   using namespace L4;
   using namespace Ipc;
@@ -171,7 +171,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_copy(l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_move(l4_cap_idx_t _1)
+l4_cap_idx_t l4_ipc_cap_dataspace_move(l4_cap_idx_t _1)
 {
   using namespace L4;
   using namespace Ipc;
@@ -192,7 +192,7 @@ l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_move(l4_cap_idx_t _1)
   return __ret;
 }
 
-void l4_ipc_cap_l4_re_dataspace_delete(l4_cap_idx_t __self)
+void l4_ipc_cap_dataspace_delete(l4_cap_idx_t __self)
 {
   using namespace L4;
   using namespace Ipc;
@@ -205,7 +205,7 @@ void l4_ipc_cap_l4_re_dataspace_delete(l4_cap_idx_t __self)
   ___self->~Cap<L4Re::Dataspace>();
 }
 
-l4_cap_idx_t l4_ipc_cap_l4_re_dataspace_new_l4_re_dataspace(l4_cap_idx_t o)
+l4_cap_idx_t l4_ipc_cap_dataspace_new_dataspace(l4_cap_idx_t o)
 {
   using namespace L4;
   using namespace Ipc;

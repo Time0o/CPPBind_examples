@@ -3,15 +3,23 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#include "/home/timo/github/projects/cppbind/generate/cppbind/lua/lua_util.h"
+
 #include "/home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/env"
 
-#include "cppbind/type_info.h"
+#include "/home/timo/github/projects/cppbind/generate/cppbind/type_info.h"
 
 namespace cppbind::type_info {
+  type_instance<L4::Cap<L4::Task>> _ZTSN2L43CapINS_4TaskEEE;
+  type_instance<L4::Cap<L4::Factory>> _ZTSN2L43CapINS_7FactoryEEE;
+  type_instance<L4::Cap<L4::Thread>> _ZTSN2L43CapINS_6ThreadEEE;
+  type_instance<L4::Cap<L4Re::Mem_alloc>> _ZTSN2L43CapIN4L4Re9Mem_allocEEE;
+  type_instance<L4::Cap<L4Re::Rm>> _ZTSN2L43CapIN4L4Re2RmEEE;
+  type_instance<L4::Cap<L4Re::Parent>> _ZTSN2L43CapIN4L4Re6ParentEEE;
+  type_instance<L4::Cap<L4Re::Log>> _ZTSN2L43CapIN4L4Re3LogEEE;
+  type_instance<L4::Cap<L4::Scheduler>> _ZTSN2L43CapINS_9SchedulerEEE;
   type_instance<L4Re::Env> _ZTSN4L4Re3EnvE;
 }
-
-#include "cppbind/lua/lua_util.h"
 
 namespace
 {
@@ -456,6 +464,98 @@ int l4_re_env_new(lua_State *L)
 void _register(lua_State *L)
 {
   lua_createtable(L, 0, 0);
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4IpcCap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspace");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspaceF");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspaceFlags");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReMemAlloc");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReRm");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReRmF");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReRmFFlags");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
 
   lua_createtable(L, 0, 0);
 

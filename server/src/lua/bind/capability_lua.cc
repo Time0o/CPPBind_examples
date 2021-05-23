@@ -3,12 +3,14 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#include "/home/timo/github/projects/cppbind/generate/cppbind/lua/lua_util.h"
+
 #include "/home/timo/github/l4re/l4/pkg/l4re-core/l4sys/include/cxx/capability.h"
 #include </home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/dataspace>
 #include </home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/mem_alloc>
 #include </home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/rm>
 
-#include "cppbind/type_info.h"
+#include "/home/timo/github/projects/cppbind/generate/cppbind/type_info.h"
 
 namespace cppbind::type_info {
   type_instance<L4::Cap<L4::Task>> _ZTSN2L43CapINS_4TaskEEE;
@@ -19,17 +21,18 @@ namespace cppbind::type_info {
   type_instance<L4::Cap<L4::Irq>> _ZTSN2L43CapINS_3IrqEEE;
   type_instance<L4::Cap<L4::Vm>> _ZTSN2L43CapINS_2VmEEE;
   type_instance<L4::Cap<void>> _ZTSN2L43CapIvEE;
+  type_instance<L4Re::Dataspace> _ZTSN4L4Re9DataspaceE;
+  type_instance<L4Re::Mem_alloc> _ZTSN4L4Re9Mem_allocE;
+  type_instance<L4Re::Rm> _ZTSN4L4Re2RmE;
   type_instance<L4::Cap<L4Re::Dataspace>> _ZTSN2L43CapIN4L4Re9DataspaceEEE;
   type_instance<L4::Cap<L4Re::Mem_alloc>> _ZTSN2L43CapIN4L4Re9Mem_allocEEE;
   type_instance<L4::Cap<L4Re::Rm>> _ZTSN2L43CapIN4L4Re2RmEEE;
 }
 
-#include "cppbind/lua/lua_util.h"
-
 namespace
 {
 
-int l4_cap_l4_task_new_1(lua_State *L)
+int l4_cap_task_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -49,7 +52,7 @@ int l4_cap_l4_task_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_new_2(lua_State *L)
+int l4_cap_task_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -69,7 +72,7 @@ int l4_cap_l4_task_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_new_3(lua_State *L)
+int l4_cap_task_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -92,7 +95,7 @@ int l4_cap_l4_task_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_new_4(lua_State *L)
+int l4_cap_task_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -112,7 +115,7 @@ int l4_cap_l4_task_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_move_1(lua_State *L)
+int l4_cap_task_move_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -136,7 +139,7 @@ int l4_cap_l4_task_move_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_copy_1(lua_State *L)
+int l4_cap_task_copy_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -160,7 +163,7 @@ int l4_cap_l4_task_copy_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_copy_2(lua_State *L)
+int l4_cap_task_copy_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -180,7 +183,7 @@ int l4_cap_l4_task_copy_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_move_2(lua_State *L)
+int l4_cap_task_move_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -200,7 +203,7 @@ int l4_cap_l4_task_move_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_new_l4_task(lua_State *L)
+int l4_cap_task_new_task(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -220,7 +223,7 @@ int l4_cap_l4_task_new_l4_task(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_cap(lua_State *L)
+int l4_cap_task_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -239,7 +242,7 @@ int l4_cap_l4_task_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_is_valid(lua_State *L)
+int l4_cap_task_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -258,7 +261,7 @@ int l4_cap_l4_task_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_snd_base(lua_State *L)
+int l4_cap_task_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -289,53 +292,7 @@ int l4_cap_l4_task_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_task_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Task> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_task_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Task> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_task_invalidate(lua_State *L)
+int l4_cap_task_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -352,7 +309,7 @@ int l4_cap_l4_task_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_kobject_new_1(lua_State *L)
+int l4_cap_kobject_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -372,7 +329,7 @@ int l4_cap_l4_kobject_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_new_2(lua_State *L)
+int l4_cap_kobject_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -392,7 +349,7 @@ int l4_cap_l4_kobject_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_new_3(lua_State *L)
+int l4_cap_kobject_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -415,7 +372,7 @@ int l4_cap_l4_kobject_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_new_4(lua_State *L)
+int l4_cap_kobject_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -435,7 +392,7 @@ int l4_cap_l4_kobject_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_move(lua_State *L)
+int l4_cap_kobject_move(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -459,7 +416,7 @@ int l4_cap_l4_kobject_move(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_copy(lua_State *L)
+int l4_cap_kobject_copy(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -483,7 +440,7 @@ int l4_cap_l4_kobject_copy(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_cap(lua_State *L)
+int l4_cap_kobject_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -502,7 +459,7 @@ int l4_cap_l4_kobject_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_is_valid(lua_State *L)
+int l4_cap_kobject_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -521,7 +478,7 @@ int l4_cap_l4_kobject_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_snd_base(lua_State *L)
+int l4_cap_kobject_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -552,53 +509,7 @@ int l4_cap_l4_kobject_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_kobject_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Kobject> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Kobject>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_kobject_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Kobject> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Kobject>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_kobject_invalidate(lua_State *L)
+int l4_cap_kobject_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -615,7 +526,7 @@ int l4_cap_l4_kobject_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_meta_new_1(lua_State *L)
+int l4_cap_meta_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -635,7 +546,7 @@ int l4_cap_l4_meta_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_new_2(lua_State *L)
+int l4_cap_meta_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -655,7 +566,7 @@ int l4_cap_l4_meta_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_new_3(lua_State *L)
+int l4_cap_meta_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -678,7 +589,7 @@ int l4_cap_l4_meta_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_new_4(lua_State *L)
+int l4_cap_meta_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -698,7 +609,7 @@ int l4_cap_l4_meta_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_move(lua_State *L)
+int l4_cap_meta_move(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -722,7 +633,7 @@ int l4_cap_l4_meta_move(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_copy(lua_State *L)
+int l4_cap_meta_copy(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -746,7 +657,7 @@ int l4_cap_l4_meta_copy(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_cap(lua_State *L)
+int l4_cap_meta_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -765,7 +676,7 @@ int l4_cap_l4_meta_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_is_valid(lua_State *L)
+int l4_cap_meta_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -784,7 +695,7 @@ int l4_cap_l4_meta_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_snd_base(lua_State *L)
+int l4_cap_meta_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -815,53 +726,7 @@ int l4_cap_l4_meta_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_meta_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Meta> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Meta>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_meta_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Meta> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Meta>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_meta_invalidate(lua_State *L)
+int l4_cap_meta_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -878,7 +743,7 @@ int l4_cap_l4_meta_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_factory_new_1(lua_State *L)
+int l4_cap_factory_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -898,7 +763,7 @@ int l4_cap_l4_factory_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_new_2(lua_State *L)
+int l4_cap_factory_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -918,7 +783,7 @@ int l4_cap_l4_factory_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_new_3(lua_State *L)
+int l4_cap_factory_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -941,7 +806,7 @@ int l4_cap_l4_factory_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_new_4(lua_State *L)
+int l4_cap_factory_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -961,7 +826,7 @@ int l4_cap_l4_factory_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_move(lua_State *L)
+int l4_cap_factory_move(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -985,7 +850,7 @@ int l4_cap_l4_factory_move(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_copy(lua_State *L)
+int l4_cap_factory_copy(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1009,7 +874,7 @@ int l4_cap_l4_factory_copy(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_cap(lua_State *L)
+int l4_cap_factory_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1028,7 +893,7 @@ int l4_cap_l4_factory_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_is_valid(lua_State *L)
+int l4_cap_factory_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1047,7 +912,7 @@ int l4_cap_l4_factory_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_snd_base(lua_State *L)
+int l4_cap_factory_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -1078,53 +943,7 @@ int l4_cap_l4_factory_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_factory_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Factory> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Factory>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_factory_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Factory> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Factory>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_factory_invalidate(lua_State *L)
+int l4_cap_factory_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1141,7 +960,7 @@ int l4_cap_l4_factory_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_thread_new_1(lua_State *L)
+int l4_cap_thread_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1161,7 +980,7 @@ int l4_cap_l4_thread_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_new_2(lua_State *L)
+int l4_cap_thread_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1181,7 +1000,7 @@ int l4_cap_l4_thread_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_new_3(lua_State *L)
+int l4_cap_thread_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -1204,7 +1023,7 @@ int l4_cap_l4_thread_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_new_4(lua_State *L)
+int l4_cap_thread_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1224,7 +1043,7 @@ int l4_cap_l4_thread_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_move(lua_State *L)
+int l4_cap_thread_move(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1248,7 +1067,7 @@ int l4_cap_l4_thread_move(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_copy(lua_State *L)
+int l4_cap_thread_copy(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1272,7 +1091,7 @@ int l4_cap_l4_thread_copy(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_cap(lua_State *L)
+int l4_cap_thread_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1291,7 +1110,7 @@ int l4_cap_l4_thread_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_is_valid(lua_State *L)
+int l4_cap_thread_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1310,7 +1129,7 @@ int l4_cap_l4_thread_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_snd_base(lua_State *L)
+int l4_cap_thread_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -1341,53 +1160,7 @@ int l4_cap_l4_thread_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_thread_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Thread> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Thread>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_thread_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Thread> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Thread>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_thread_invalidate(lua_State *L)
+int l4_cap_thread_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1404,7 +1177,7 @@ int l4_cap_l4_thread_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_irq_new_1(lua_State *L)
+int l4_cap_irq_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1424,7 +1197,7 @@ int l4_cap_l4_irq_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_new_2(lua_State *L)
+int l4_cap_irq_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1444,7 +1217,7 @@ int l4_cap_l4_irq_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_new_3(lua_State *L)
+int l4_cap_irq_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -1467,7 +1240,7 @@ int l4_cap_l4_irq_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_new_4(lua_State *L)
+int l4_cap_irq_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1487,7 +1260,7 @@ int l4_cap_l4_irq_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_move(lua_State *L)
+int l4_cap_irq_move(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1511,7 +1284,7 @@ int l4_cap_l4_irq_move(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_copy(lua_State *L)
+int l4_cap_irq_copy(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1535,7 +1308,7 @@ int l4_cap_l4_irq_copy(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_cap(lua_State *L)
+int l4_cap_irq_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1554,7 +1327,7 @@ int l4_cap_l4_irq_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_is_valid(lua_State *L)
+int l4_cap_irq_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1573,7 +1346,7 @@ int l4_cap_l4_irq_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_snd_base(lua_State *L)
+int l4_cap_irq_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -1604,53 +1377,7 @@ int l4_cap_l4_irq_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_irq_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Irq> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Irq>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_irq_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Irq> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Irq>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_irq_invalidate(lua_State *L)
+int l4_cap_irq_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1667,7 +1394,7 @@ int l4_cap_l4_irq_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_vm_new_1(lua_State *L)
+int l4_cap_vm_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1687,7 +1414,7 @@ int l4_cap_l4_vm_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_new_2(lua_State *L)
+int l4_cap_vm_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1707,7 +1434,7 @@ int l4_cap_l4_vm_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_new_3(lua_State *L)
+int l4_cap_vm_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -1730,7 +1457,7 @@ int l4_cap_l4_vm_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_new_4(lua_State *L)
+int l4_cap_vm_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1750,7 +1477,7 @@ int l4_cap_l4_vm_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_move(lua_State *L)
+int l4_cap_vm_move(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1774,7 +1501,7 @@ int l4_cap_l4_vm_move(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_copy(lua_State *L)
+int l4_cap_vm_copy(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -1798,7 +1525,7 @@ int l4_cap_l4_vm_copy(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_cap(lua_State *L)
+int l4_cap_vm_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1817,7 +1544,7 @@ int l4_cap_l4_vm_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_is_valid(lua_State *L)
+int l4_cap_vm_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -1836,7 +1563,7 @@ int l4_cap_l4_vm_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_snd_base(lua_State *L)
+int l4_cap_vm_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -1867,53 +1594,7 @@ int l4_cap_l4_vm_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_vm_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Vm> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Vm>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_vm_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4::Vm> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Vm>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_vm_invalidate(lua_State *L)
+int l4_cap_vm_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2210,52 +1891,6 @@ int l4_cap_void_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_void_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<void> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<void>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_void_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<void> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<void>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
 int l4_cap_void_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
@@ -2273,7 +1908,7 @@ int l4_cap_void_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_re_dataspace_new_1(lua_State *L)
+int l4_cap_dataspace_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2293,7 +1928,7 @@ int l4_cap_l4_re_dataspace_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_new_2(lua_State *L)
+int l4_cap_dataspace_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2313,7 +1948,7 @@ int l4_cap_l4_re_dataspace_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_new_3(lua_State *L)
+int l4_cap_dataspace_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -2336,7 +1971,7 @@ int l4_cap_l4_re_dataspace_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_new_4(lua_State *L)
+int l4_cap_dataspace_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2356,7 +1991,7 @@ int l4_cap_l4_re_dataspace_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_move_1(lua_State *L)
+int l4_cap_dataspace_move_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -2380,7 +2015,7 @@ int l4_cap_l4_re_dataspace_move_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_copy_1(lua_State *L)
+int l4_cap_dataspace_copy_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -2404,7 +2039,7 @@ int l4_cap_l4_re_dataspace_copy_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_access(lua_State *L)
+int l4_cap_dataspace_access(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2424,7 +2059,7 @@ int l4_cap_l4_re_dataspace_access(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_copy_2(lua_State *L)
+int l4_cap_dataspace_copy_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2444,7 +2079,7 @@ int l4_cap_l4_re_dataspace_copy_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_move_2(lua_State *L)
+int l4_cap_dataspace_move_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2464,7 +2099,7 @@ int l4_cap_l4_re_dataspace_move_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_new_l4_re_dataspace(lua_State *L)
+int l4_cap_dataspace_new_dataspace(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2484,7 +2119,7 @@ int l4_cap_l4_re_dataspace_new_l4_re_dataspace(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_cap(lua_State *L)
+int l4_cap_dataspace_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2503,7 +2138,7 @@ int l4_cap_l4_re_dataspace_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_is_valid(lua_State *L)
+int l4_cap_dataspace_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2522,7 +2157,7 @@ int l4_cap_l4_re_dataspace_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_snd_base(lua_State *L)
+int l4_cap_dataspace_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -2553,53 +2188,7 @@ int l4_cap_l4_re_dataspace_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_dataspace_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4Re::Dataspace> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_re_dataspace_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4Re::Dataspace> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_re_dataspace_invalidate(lua_State *L)
+int l4_cap_dataspace_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2616,7 +2205,7 @@ int l4_cap_l4_re_dataspace_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_re_mem_alloc_new_1(lua_State *L)
+int l4_cap_mem_alloc_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2636,7 +2225,7 @@ int l4_cap_l4_re_mem_alloc_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_new_2(lua_State *L)
+int l4_cap_mem_alloc_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2656,7 +2245,7 @@ int l4_cap_l4_re_mem_alloc_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_new_3(lua_State *L)
+int l4_cap_mem_alloc_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -2679,7 +2268,7 @@ int l4_cap_l4_re_mem_alloc_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_new_4(lua_State *L)
+int l4_cap_mem_alloc_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2699,7 +2288,7 @@ int l4_cap_l4_re_mem_alloc_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_move_1(lua_State *L)
+int l4_cap_mem_alloc_move_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -2723,7 +2312,7 @@ int l4_cap_l4_re_mem_alloc_move_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_copy_1(lua_State *L)
+int l4_cap_mem_alloc_copy_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -2747,7 +2336,7 @@ int l4_cap_l4_re_mem_alloc_copy_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_access(lua_State *L)
+int l4_cap_mem_alloc_access(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2767,7 +2356,7 @@ int l4_cap_l4_re_mem_alloc_access(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_copy_2(lua_State *L)
+int l4_cap_mem_alloc_copy_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2787,7 +2376,7 @@ int l4_cap_l4_re_mem_alloc_copy_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_move_2(lua_State *L)
+int l4_cap_mem_alloc_move_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2807,7 +2396,7 @@ int l4_cap_l4_re_mem_alloc_move_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_new_l4_re_mem_alloc(lua_State *L)
+int l4_cap_mem_alloc_new_mem_alloc(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2827,7 +2416,7 @@ int l4_cap_l4_re_mem_alloc_new_l4_re_mem_alloc(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_cap(lua_State *L)
+int l4_cap_mem_alloc_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2846,7 +2435,7 @@ int l4_cap_l4_re_mem_alloc_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_is_valid(lua_State *L)
+int l4_cap_mem_alloc_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2865,7 +2454,7 @@ int l4_cap_l4_re_mem_alloc_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_snd_base(lua_State *L)
+int l4_cap_mem_alloc_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -2896,53 +2485,7 @@ int l4_cap_l4_re_mem_alloc_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_mem_alloc_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4Re::Mem_alloc> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4Re::Mem_alloc>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_re_mem_alloc_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4Re::Mem_alloc> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4Re::Mem_alloc>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_re_mem_alloc_invalidate(lua_State *L)
+int l4_cap_mem_alloc_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2959,7 +2502,7 @@ int l4_cap_l4_re_mem_alloc_invalidate(lua_State *L)
   return 0;
 }
 
-int l4_cap_l4_re_rm_new_1(lua_State *L)
+int l4_cap_rm_new_1(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2979,7 +2522,7 @@ int l4_cap_l4_re_rm_new_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_new_2(lua_State *L)
+int l4_cap_rm_new_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -2999,7 +2542,7 @@ int l4_cap_l4_re_rm_new_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_new_3(lua_State *L)
+int l4_cap_rm_new_3(lua_State *L)
 {
   if (lua_gettop(L) < 0 || lua_gettop(L) > 1)
     return luaL_error(L, "function expects between 0 and 1 arguments");
@@ -3022,7 +2565,7 @@ int l4_cap_l4_re_rm_new_3(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_new_4(lua_State *L)
+int l4_cap_rm_new_4(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3042,7 +2585,7 @@ int l4_cap_l4_re_rm_new_4(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_move_1(lua_State *L)
+int l4_cap_rm_move_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -3066,7 +2609,7 @@ int l4_cap_l4_re_rm_move_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_copy_1(lua_State *L)
+int l4_cap_rm_copy_1(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -3090,7 +2633,7 @@ int l4_cap_l4_re_rm_copy_1(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_access(lua_State *L)
+int l4_cap_rm_access(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3110,7 +2653,7 @@ int l4_cap_l4_re_rm_access(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_copy_2(lua_State *L)
+int l4_cap_rm_copy_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3130,7 +2673,7 @@ int l4_cap_l4_re_rm_copy_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_move_2(lua_State *L)
+int l4_cap_rm_move_2(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3150,7 +2693,7 @@ int l4_cap_l4_re_rm_move_2(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_copy_assign(lua_State *L)
+int l4_cap_rm_copy_assign(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -3174,7 +2717,7 @@ int l4_cap_l4_re_rm_copy_assign(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_move_assign(lua_State *L)
+int l4_cap_rm_move_assign(lua_State *L)
 {
   if (lua_gettop(L) != 2)
     return luaL_error(L, "function expects 2 arguments");
@@ -3198,7 +2741,7 @@ int l4_cap_l4_re_rm_move_assign(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_new_l4_re_rm(lua_State *L)
+int l4_cap_rm_new_rm(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3218,7 +2761,7 @@ int l4_cap_l4_re_rm_new_l4_re_rm(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_cap(lua_State *L)
+int l4_cap_rm_cap(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3237,7 +2780,7 @@ int l4_cap_l4_re_rm_cap(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_is_valid(lua_State *L)
+int l4_cap_rm_is_valid(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3256,7 +2799,7 @@ int l4_cap_l4_re_rm_is_valid(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_snd_base(lua_State *L)
+int l4_cap_rm_snd_base(lua_State *L)
 {
   if (lua_gettop(L) < 1 || lua_gettop(L) > 3)
     return luaL_error(L, "function expects between 1 and 3 arguments");
@@ -3287,53 +2830,7 @@ int l4_cap_l4_re_rm_snd_base(lua_State *L)
   return 1;
 }
 
-int l4_cap_l4_re_rm_eq(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4Re::Rm> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4Re::Rm>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator==(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_re_rm_ne(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-
-  const L4::Cap<L4Re::Rm> * ___self;
-  const L4::Cap_base * _o;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4Re::Rm>>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _o = cppbind::type_info::typed_pointer_cast<const L4::Cap_base>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  auto __out = ___self->operator!=(*_o);
-
-  lua_pushboolean(L, __out);
-
-  return 1;
-}
-
-int l4_cap_l4_re_rm_invalidate(lua_State *L)
+int l4_cap_rm_invalidate(lua_State *L)
 {
   if (lua_gettop(L) != 1)
     return luaL_error(L, "function expects 1 arguments");
@@ -3356,120 +2853,152 @@ void _register(lua_State *L)
 
   lua_createtable(L, 0, 0);
 
+  lua_setfield(L, -2, "L4IpcCap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspace");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspaceF");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspaceFlags");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReMemAlloc");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReRm");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReRmF");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReRmFFlags");
+
+  lua_createtable(L, 0, 0);
+
   lua_createtable(L, 0, 7);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_task_new_1},
-      {"new_2", l4_cap_l4_task_new_2},
-      {"new_3", l4_cap_l4_task_new_3},
-      {"new_4", l4_cap_l4_task_new_4},
-      {"copy_2", l4_cap_l4_task_copy_2},
-      {"move_2", l4_cap_l4_task_move_2},
-      {"new_l4_task", l4_cap_l4_task_new_l4_task},
+      {"new_1", l4_cap_task_new_1},
+      {"new_2", l4_cap_task_new_2},
+      {"new_3", l4_cap_task_new_3},
+      {"new_4", l4_cap_task_new_4},
+      {"copy_2", l4_cap_task_copy_2},
+      {"move_2", l4_cap_task_move_2},
+      {"new_task", l4_cap_task_new_task},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Task");
+  lua_setfield(L, -2, "CapTask");
 
   lua_createtable(L, 0, 4);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_kobject_new_1},
-      {"new_2", l4_cap_l4_kobject_new_2},
-      {"new_3", l4_cap_l4_kobject_new_3},
-      {"new_4", l4_cap_l4_kobject_new_4},
+      {"new_1", l4_cap_kobject_new_1},
+      {"new_2", l4_cap_kobject_new_2},
+      {"new_3", l4_cap_kobject_new_3},
+      {"new_4", l4_cap_kobject_new_4},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Kobject");
+  lua_setfield(L, -2, "CapKobject");
 
   lua_createtable(L, 0, 4);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_meta_new_1},
-      {"new_2", l4_cap_l4_meta_new_2},
-      {"new_3", l4_cap_l4_meta_new_3},
-      {"new_4", l4_cap_l4_meta_new_4},
+      {"new_1", l4_cap_meta_new_1},
+      {"new_2", l4_cap_meta_new_2},
+      {"new_3", l4_cap_meta_new_3},
+      {"new_4", l4_cap_meta_new_4},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Meta");
+  lua_setfield(L, -2, "CapMeta");
 
   lua_createtable(L, 0, 4);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_factory_new_1},
-      {"new_2", l4_cap_l4_factory_new_2},
-      {"new_3", l4_cap_l4_factory_new_3},
-      {"new_4", l4_cap_l4_factory_new_4},
+      {"new_1", l4_cap_factory_new_1},
+      {"new_2", l4_cap_factory_new_2},
+      {"new_3", l4_cap_factory_new_3},
+      {"new_4", l4_cap_factory_new_4},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Factory");
+  lua_setfield(L, -2, "CapFactory");
 
   lua_createtable(L, 0, 4);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_thread_new_1},
-      {"new_2", l4_cap_l4_thread_new_2},
-      {"new_3", l4_cap_l4_thread_new_3},
-      {"new_4", l4_cap_l4_thread_new_4},
+      {"new_1", l4_cap_thread_new_1},
+      {"new_2", l4_cap_thread_new_2},
+      {"new_3", l4_cap_thread_new_3},
+      {"new_4", l4_cap_thread_new_4},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Thread");
+  lua_setfield(L, -2, "CapThread");
 
   lua_createtable(L, 0, 4);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_irq_new_1},
-      {"new_2", l4_cap_l4_irq_new_2},
-      {"new_3", l4_cap_l4_irq_new_3},
-      {"new_4", l4_cap_l4_irq_new_4},
+      {"new_1", l4_cap_irq_new_1},
+      {"new_2", l4_cap_irq_new_2},
+      {"new_3", l4_cap_irq_new_3},
+      {"new_4", l4_cap_irq_new_4},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Irq");
+  lua_setfield(L, -2, "CapIrq");
 
   lua_createtable(L, 0, 4);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_vm_new_1},
-      {"new_2", l4_cap_l4_vm_new_2},
-      {"new_3", l4_cap_l4_vm_new_3},
-      {"new_4", l4_cap_l4_vm_new_4},
+      {"new_1", l4_cap_vm_new_1},
+      {"new_2", l4_cap_vm_new_2},
+      {"new_3", l4_cap_vm_new_3},
+      {"new_4", l4_cap_vm_new_4},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4Vm");
+  lua_setfield(L, -2, "CapVm");
 
   lua_createtable(L, 0, 8);
 
@@ -3495,58 +3024,58 @@ void _register(lua_State *L)
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_re_dataspace_new_1},
-      {"new_2", l4_cap_l4_re_dataspace_new_2},
-      {"new_3", l4_cap_l4_re_dataspace_new_3},
-      {"new_4", l4_cap_l4_re_dataspace_new_4},
-      {"copy_2", l4_cap_l4_re_dataspace_copy_2},
-      {"move_2", l4_cap_l4_re_dataspace_move_2},
-      {"new_l4_re_dataspace", l4_cap_l4_re_dataspace_new_l4_re_dataspace},
+      {"new_1", l4_cap_dataspace_new_1},
+      {"new_2", l4_cap_dataspace_new_2},
+      {"new_3", l4_cap_dataspace_new_3},
+      {"new_4", l4_cap_dataspace_new_4},
+      {"copy_2", l4_cap_dataspace_copy_2},
+      {"move_2", l4_cap_dataspace_move_2},
+      {"new_dataspace", l4_cap_dataspace_new_dataspace},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4ReDataspace");
+  lua_setfield(L, -2, "CapDataspace");
 
   lua_createtable(L, 0, 7);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_re_mem_alloc_new_1},
-      {"new_2", l4_cap_l4_re_mem_alloc_new_2},
-      {"new_3", l4_cap_l4_re_mem_alloc_new_3},
-      {"new_4", l4_cap_l4_re_mem_alloc_new_4},
-      {"copy_2", l4_cap_l4_re_mem_alloc_copy_2},
-      {"move_2", l4_cap_l4_re_mem_alloc_move_2},
-      {"new_l4_re_mem_alloc", l4_cap_l4_re_mem_alloc_new_l4_re_mem_alloc},
+      {"new_1", l4_cap_mem_alloc_new_1},
+      {"new_2", l4_cap_mem_alloc_new_2},
+      {"new_3", l4_cap_mem_alloc_new_3},
+      {"new_4", l4_cap_mem_alloc_new_4},
+      {"copy_2", l4_cap_mem_alloc_copy_2},
+      {"move_2", l4_cap_mem_alloc_move_2},
+      {"new_mem_alloc", l4_cap_mem_alloc_new_mem_alloc},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4ReMemAlloc");
+  lua_setfield(L, -2, "CapMemAlloc");
 
   lua_createtable(L, 0, 7);
 
   {
     static luaL_Reg const _functions[] = {
-      {"new_1", l4_cap_l4_re_rm_new_1},
-      {"new_2", l4_cap_l4_re_rm_new_2},
-      {"new_3", l4_cap_l4_re_rm_new_3},
-      {"new_4", l4_cap_l4_re_rm_new_4},
-      {"copy_2", l4_cap_l4_re_rm_copy_2},
-      {"move_2", l4_cap_l4_re_rm_move_2},
-      {"new_l4_re_rm", l4_cap_l4_re_rm_new_l4_re_rm},
+      {"new_1", l4_cap_rm_new_1},
+      {"new_2", l4_cap_rm_new_2},
+      {"new_3", l4_cap_rm_new_3},
+      {"new_4", l4_cap_rm_new_4},
+      {"copy_2", l4_cap_rm_copy_2},
+      {"move_2", l4_cap_rm_move_2},
+      {"new_rm", l4_cap_rm_new_rm},
       {nullptr, nullptr}
     };
 
     luaL_setfuncs(L, _functions, 0);
   }
 
-  lua_setfield(L, -2, "CapL4ReRm");
+  lua_setfield(L, -2, "CapRm");
 
   lua_setfield(L, -2, "L4");
 }
@@ -3555,88 +3084,74 @@ void _createmetatables(lua_State *L)
 {
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_4TaskEEE",
     {
-      {"move_1", l4_cap_l4_task_move_1},
-      {"copy_1", l4_cap_l4_task_copy_1},
-      {"cap", l4_cap_l4_task_cap},
-      {"is_valid", l4_cap_l4_task_is_valid},
-      {"snd_base", l4_cap_l4_task_snd_base},
-      {"eq", l4_cap_l4_task_eq},
-      {"ne", l4_cap_l4_task_ne},
-      {"invalidate", l4_cap_l4_task_invalidate},
+      {"move_1", l4_cap_task_move_1},
+      {"copy_1", l4_cap_task_copy_1},
+      {"cap", l4_cap_task_cap},
+      {"is_valid", l4_cap_task_is_valid},
+      {"snd_base", l4_cap_task_snd_base},
+      {"invalidate", l4_cap_task_invalidate},
       {"copy", cppbind::lua::bind_copy},
       {"move", cppbind::lua::bind_move}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_7KobjectEEE",
     {
-      {"move", l4_cap_l4_kobject_move},
-      {"copy", l4_cap_l4_kobject_copy},
-      {"cap", l4_cap_l4_kobject_cap},
-      {"is_valid", l4_cap_l4_kobject_is_valid},
-      {"snd_base", l4_cap_l4_kobject_snd_base},
-      {"eq", l4_cap_l4_kobject_eq},
-      {"ne", l4_cap_l4_kobject_ne},
-      {"invalidate", l4_cap_l4_kobject_invalidate}
+      {"move", l4_cap_kobject_move},
+      {"copy", l4_cap_kobject_copy},
+      {"cap", l4_cap_kobject_cap},
+      {"is_valid", l4_cap_kobject_is_valid},
+      {"snd_base", l4_cap_kobject_snd_base},
+      {"invalidate", l4_cap_kobject_invalidate}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_4MetaEEE",
     {
-      {"move", l4_cap_l4_meta_move},
-      {"copy", l4_cap_l4_meta_copy},
-      {"cap", l4_cap_l4_meta_cap},
-      {"is_valid", l4_cap_l4_meta_is_valid},
-      {"snd_base", l4_cap_l4_meta_snd_base},
-      {"eq", l4_cap_l4_meta_eq},
-      {"ne", l4_cap_l4_meta_ne},
-      {"invalidate", l4_cap_l4_meta_invalidate}
+      {"move", l4_cap_meta_move},
+      {"copy", l4_cap_meta_copy},
+      {"cap", l4_cap_meta_cap},
+      {"is_valid", l4_cap_meta_is_valid},
+      {"snd_base", l4_cap_meta_snd_base},
+      {"invalidate", l4_cap_meta_invalidate}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_7FactoryEEE",
     {
-      {"move", l4_cap_l4_factory_move},
-      {"copy", l4_cap_l4_factory_copy},
-      {"cap", l4_cap_l4_factory_cap},
-      {"is_valid", l4_cap_l4_factory_is_valid},
-      {"snd_base", l4_cap_l4_factory_snd_base},
-      {"eq", l4_cap_l4_factory_eq},
-      {"ne", l4_cap_l4_factory_ne},
-      {"invalidate", l4_cap_l4_factory_invalidate}
+      {"move", l4_cap_factory_move},
+      {"copy", l4_cap_factory_copy},
+      {"cap", l4_cap_factory_cap},
+      {"is_valid", l4_cap_factory_is_valid},
+      {"snd_base", l4_cap_factory_snd_base},
+      {"invalidate", l4_cap_factory_invalidate}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_6ThreadEEE",
     {
-      {"move", l4_cap_l4_thread_move},
-      {"copy", l4_cap_l4_thread_copy},
-      {"cap", l4_cap_l4_thread_cap},
-      {"is_valid", l4_cap_l4_thread_is_valid},
-      {"snd_base", l4_cap_l4_thread_snd_base},
-      {"eq", l4_cap_l4_thread_eq},
-      {"ne", l4_cap_l4_thread_ne},
-      {"invalidate", l4_cap_l4_thread_invalidate}
+      {"move", l4_cap_thread_move},
+      {"copy", l4_cap_thread_copy},
+      {"cap", l4_cap_thread_cap},
+      {"is_valid", l4_cap_thread_is_valid},
+      {"snd_base", l4_cap_thread_snd_base},
+      {"invalidate", l4_cap_thread_invalidate}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_3IrqEEE",
     {
-      {"move", l4_cap_l4_irq_move},
-      {"copy", l4_cap_l4_irq_copy},
-      {"cap", l4_cap_l4_irq_cap},
-      {"is_valid", l4_cap_l4_irq_is_valid},
-      {"snd_base", l4_cap_l4_irq_snd_base},
-      {"eq", l4_cap_l4_irq_eq},
-      {"ne", l4_cap_l4_irq_ne},
-      {"invalidate", l4_cap_l4_irq_invalidate}
+      {"move", l4_cap_irq_move},
+      {"copy", l4_cap_irq_copy},
+      {"cap", l4_cap_irq_cap},
+      {"is_valid", l4_cap_irq_is_valid},
+      {"snd_base", l4_cap_irq_snd_base},
+      {"invalidate", l4_cap_irq_invalidate}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapINS_2VmEEE",
     {
-      {"move", l4_cap_l4_vm_move},
-      {"copy", l4_cap_l4_vm_copy},
-      {"cap", l4_cap_l4_vm_cap},
-      {"is_valid", l4_cap_l4_vm_is_valid},
-      {"snd_base", l4_cap_l4_vm_snd_base},
-      {"eq", l4_cap_l4_vm_eq},
-      {"ne", l4_cap_l4_vm_ne},
-      {"invalidate", l4_cap_l4_vm_invalidate}
+      {"move", l4_cap_vm_move},
+      {"copy", l4_cap_vm_copy},
+      {"cap", l4_cap_vm_cap},
+      {"is_valid", l4_cap_vm_is_valid},
+      {"snd_base", l4_cap_vm_snd_base},
+      {"invalidate", l4_cap_vm_invalidate}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapIvEE",
@@ -3646,8 +3161,6 @@ void _createmetatables(lua_State *L)
       {"cap", l4_cap_void_cap},
       {"is_valid", l4_cap_void_is_valid},
       {"snd_base", l4_cap_void_snd_base},
-      {"eq", l4_cap_void_eq},
-      {"ne", l4_cap_void_ne},
       {"invalidate", l4_cap_void_invalidate},
       {"copy", cppbind::lua::bind_copy},
       {"move", cppbind::lua::bind_move}
@@ -3655,47 +3168,41 @@ void _createmetatables(lua_State *L)
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapIN4L4Re9DataspaceEEE",
     {
-      {"move_1", l4_cap_l4_re_dataspace_move_1},
-      {"copy_1", l4_cap_l4_re_dataspace_copy_1},
-      {"access", l4_cap_l4_re_dataspace_access},
-      {"cap", l4_cap_l4_re_dataspace_cap},
-      {"is_valid", l4_cap_l4_re_dataspace_is_valid},
-      {"snd_base", l4_cap_l4_re_dataspace_snd_base},
-      {"eq", l4_cap_l4_re_dataspace_eq},
-      {"ne", l4_cap_l4_re_dataspace_ne},
-      {"invalidate", l4_cap_l4_re_dataspace_invalidate},
+      {"move_1", l4_cap_dataspace_move_1},
+      {"copy_1", l4_cap_dataspace_copy_1},
+      {"access", l4_cap_dataspace_access},
+      {"cap", l4_cap_dataspace_cap},
+      {"is_valid", l4_cap_dataspace_is_valid},
+      {"snd_base", l4_cap_dataspace_snd_base},
+      {"invalidate", l4_cap_dataspace_invalidate},
       {"copy", cppbind::lua::bind_copy},
       {"move", cppbind::lua::bind_move}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapIN4L4Re9Mem_allocEEE",
     {
-      {"move_1", l4_cap_l4_re_mem_alloc_move_1},
-      {"copy_1", l4_cap_l4_re_mem_alloc_copy_1},
-      {"access", l4_cap_l4_re_mem_alloc_access},
-      {"cap", l4_cap_l4_re_mem_alloc_cap},
-      {"is_valid", l4_cap_l4_re_mem_alloc_is_valid},
-      {"snd_base", l4_cap_l4_re_mem_alloc_snd_base},
-      {"eq", l4_cap_l4_re_mem_alloc_eq},
-      {"ne", l4_cap_l4_re_mem_alloc_ne},
-      {"invalidate", l4_cap_l4_re_mem_alloc_invalidate},
+      {"move_1", l4_cap_mem_alloc_move_1},
+      {"copy_1", l4_cap_mem_alloc_copy_1},
+      {"access", l4_cap_mem_alloc_access},
+      {"cap", l4_cap_mem_alloc_cap},
+      {"is_valid", l4_cap_mem_alloc_is_valid},
+      {"snd_base", l4_cap_mem_alloc_snd_base},
+      {"invalidate", l4_cap_mem_alloc_invalidate},
       {"copy", cppbind::lua::bind_copy},
       {"move", cppbind::lua::bind_move}
     });
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN2L43CapIN4L4Re2RmEEE",
     {
-      {"move_1", l4_cap_l4_re_rm_move_1},
-      {"copy_1", l4_cap_l4_re_rm_copy_1},
-      {"access", l4_cap_l4_re_rm_access},
-      {"copy_assign", l4_cap_l4_re_rm_copy_assign},
-      {"move_assign", l4_cap_l4_re_rm_move_assign},
-      {"cap", l4_cap_l4_re_rm_cap},
-      {"is_valid", l4_cap_l4_re_rm_is_valid},
-      {"snd_base", l4_cap_l4_re_rm_snd_base},
-      {"eq", l4_cap_l4_re_rm_eq},
-      {"ne", l4_cap_l4_re_rm_ne},
-      {"invalidate", l4_cap_l4_re_rm_invalidate},
+      {"move_1", l4_cap_rm_move_1},
+      {"copy_1", l4_cap_rm_copy_1},
+      {"access", l4_cap_rm_access},
+      {"copy_assign", l4_cap_rm_copy_assign},
+      {"move_assign", l4_cap_rm_move_assign},
+      {"cap", l4_cap_rm_cap},
+      {"is_valid", l4_cap_rm_is_valid},
+      {"snd_base", l4_cap_rm_snd_base},
+      {"invalidate", l4_cap_rm_invalidate},
       {"copy", cppbind::lua::bind_copy},
       {"move", cppbind::lua::bind_move}
     });

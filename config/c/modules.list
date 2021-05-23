@@ -1,7 +1,0 @@
-entry cppbind-example-dataspace
-kernel fiasco -servial_esc
-roottask moe rom/example_dataspace.cfg
-module l4re
-module ned
-module example_dataspace.cfg
-module example_dataspace

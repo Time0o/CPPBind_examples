@@ -67,6 +67,22 @@ enum l4_re_dataspace_f_flags {
   L4_RE_DATASPACE_F_CACHING_MASK = 48ULL
 };
 
+long l4_re_dataspace_map(const struct l4_re_dataspace * __self, l4_re_dataspace_offset_t offset, unsigned long flags, l4_re_dataspace_map_addr_t local_addr, l4_re_dataspace_map_addr_t min_addr, l4_re_dataspace_map_addr_t max_addr);
+
+long l4_re_dataspace_map_region(const struct l4_re_dataspace * __self, l4_re_dataspace_offset_t offset, unsigned long flags, l4_re_dataspace_map_addr_t min_addr, l4_re_dataspace_map_addr_t max_addr);
+
+l4_re_dataspace_size_t l4_re_dataspace_size(const struct l4_re_dataspace * __self);
+
+struct l4_re_dataspace_flags l4_re_dataspace_flags(const struct l4_re_dataspace * __self);
+
+void l4_re_dataspace_delete(struct l4_re_dataspace * __self);
+
+long l4_re_dataspace_clear(const struct l4_re_dataspace * __self, unsigned long long a_1, unsigned long long a_2);
+
+long l4_re_dataspace_allocate(const struct l4_re_dataspace * __self, unsigned long long a_1, unsigned long long a_2);
+
+long l4_re_dataspace_copy_in(const struct l4_re_dataspace * __self, unsigned long long a_1, l4_cap_idx_t a_2, unsigned long long a_3, unsigned long long a_4);
+
 struct l4_re_dataspace_f l4_re_dataspace_f_new(void);
 
 void l4_re_dataspace_f_delete(struct l4_re_dataspace_f * __self);
@@ -94,22 +110,6 @@ struct l4_re_dataspace_flags l4_re_dataspace_flags_bw_and_assign(struct l4_re_da
 int l4_re_dataspace_flags_cast_bool(const struct l4_re_dataspace_flags * __self);
 
 struct l4_re_dataspace_flags l4_re_dataspace_flags_bw_not(const struct l4_re_dataspace_flags * __self);
-
-long l4_re_dataspace_map(const struct l4_re_dataspace * __self, l4_re_dataspace_offset_t offset, unsigned long flags, l4_re_dataspace_map_addr_t local_addr, l4_re_dataspace_map_addr_t min_addr, l4_re_dataspace_map_addr_t max_addr);
-
-long l4_re_dataspace_map_region(const struct l4_re_dataspace * __self, l4_re_dataspace_offset_t offset, unsigned long flags, l4_re_dataspace_map_addr_t min_addr, l4_re_dataspace_map_addr_t max_addr);
-
-l4_re_dataspace_size_t l4_re_dataspace_size(const struct l4_re_dataspace * __self);
-
-struct l4_re_dataspace_flags l4_re_dataspace_flags(const struct l4_re_dataspace * __self);
-
-void l4_re_dataspace_delete(struct l4_re_dataspace * __self);
-
-long l4_re_dataspace_clear(const struct l4_re_dataspace * __self, unsigned long long a_1, unsigned long long a_2);
-
-long l4_re_dataspace_allocate(const struct l4_re_dataspace * __self, unsigned long long a_1, unsigned long long a_2);
-
-long l4_re_dataspace_copy_in(const struct l4_re_dataspace * __self, unsigned long long a_1, l4_cap_idx_t a_2, unsigned long long a_3, unsigned long long a_4);
 
 #ifdef __cplusplus
 } // extern "C"

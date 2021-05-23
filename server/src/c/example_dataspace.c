@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <l4/re/c/util/cap_alloc.h> // TODO
-
+#include "cap_alloc_c.h"
 #include "capability_c.h"
 #include "consts_c.h"
 #include "dataspace_c.h"
@@ -13,13 +12,13 @@
 #include "rm_c.h"
 
 char str[] =
-  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
-  "tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At"
-  "vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd"
-  "gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum"
-  "dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor"
-  "invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero"
-  "eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no"
+  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod "
+  "tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At "
+  "vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd "
+  "gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum "
+  "dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor "
+  "invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero "
+  "eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no "
   "sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
 #define KOBJ(t) \
@@ -28,7 +27,7 @@ char str[] =
     struct l4_re_ ## t obj; \
   } kobj_ ## t;
 
-#define MAKE_KOBJ(t, cap) {cap, l4_cap_l4_re_ ## t ## _access(cap)}
+#define MAKE_KOBJ(t, cap) {cap, l4_cap_ ## t ## _access(cap)}
 
 KOBJ(dataspace)
 KOBJ(mem_alloc)
@@ -37,7 +36,9 @@ KOBJ(rm)
 static kobj_dataspace alloc(kobj_mem_alloc *ma,
                             l4_re_dataspace_size_t size)
 {
-  l4_cap_idx_t ds_cap = l4re_util_cap_alloc(); // TODO
+  l4_re_util_cap_alloc_t cap_alloc = l4_re_util_get_cap_alloc();
+  l4_cap_idx_t ds_cap = l4_re_util_counting_cap_alloc_counter_alloc(&cap_alloc);
+
   kobj_dataspace ds = MAKE_KOBJ(dataspace, ds_cap);
 
   assert(l4_re_mem_alloc_alloc(&ma->obj,
@@ -59,7 +60,7 @@ static l4_addr_t reserve(kobj_rm *rm,
                                &start,
                                size,
                                L4_RE_RM_F_SEARCH_ADDR,
-                               L4_PAGESHIFT) == 0);
+                               get_l4_pageshift()) == 0);
 
   return start;
 }
@@ -87,13 +88,14 @@ static void *attach(kobj_rm *rm,
                               L4_RE_RM_F_SEARCH_ADDR | flags,
                               ds->cap,
                               0,
-                              L4_PAGESHIFT) == 0);
+                              get_l4_pageshift()) == 0);
 
   return start;
 }
 
 int main(void)
 {
+  // environment
   struct l4_re_env env = l4_re_env_env();
 
   l4_cap_idx_t ma_cap = l4_re_env_mem_alloc_1(&env);
@@ -136,6 +138,8 @@ int main(void)
   l4_re_dataspace_copy_in(&ds.obj, 0, ds_copy_in.cap, 0, ds_size);
 
   assert(strcmp((char *)start, str) == 0);
+
+  puts("success");
 
   return EXIT_SUCCESS;
 }

@@ -3,24 +3,428 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#include "/home/timo/github/projects/cppbind/generate/cppbind/lua/lua_util.h"
+
 #include "/home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/rm"
 #include </home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/dataspace>
 #include </home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/rm>
 
-#include "cppbind/type_info.h"
+#include "/home/timo/github/projects/cppbind/generate/cppbind/type_info.h"
 
 namespace cppbind::type_info {
-  type_instance<L4Re::Rm::F::Flags> _ZTSN4L4Re2Rm1F5FlagsE;
-  type_instance<L4Re::Rm::F> _ZTSN4L4Re2Rm1FE;
+  type_instance<L4::Cap<L4::Task>> _ZTSN2L43CapINS_4TaskEEE;
+  type_instance<L4::Ipc::Cap<L4Re::Dataspace>> _ZTSN2L43Ipc3CapIN4L4Re9DataspaceEEE;
   type_instance<L4Re::Rm> _ZTSN4L4Re2RmE;
+  type_instance<L4Re::Rm::F> _ZTSN4L4Re2Rm1FE;
+  type_instance<L4Re::Rm::F::Flags> _ZTSN4L4Re2Rm1F5FlagsE;
+  type_instance<L4::Cap<L4Re::Dataspace>> _ZTSN2L43CapIN4L4Re9DataspaceEEE;
   type_instance<unsigned long> _ZTSm;
   type_instance<void *> _ZTSPv;
 }
 
-#include "cppbind/lua/lua_util.h"
-
 namespace
 {
+
+int l4_re_rm_reserve_area(lua_State *L)
+{
+  if (lua_gettop(L) < 3 || lua_gettop(L) > 5)
+    return luaL_error(L, "function expects between 3 and 5 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t * _start;
+  unsigned long _size;
+  L4Re::Rm::Flags _flags_proxy;
+  const L4Re::Rm::Flags _flags_default = L4Re::Rm::Flags(0);
+  const L4Re::Rm::Flags * _flags = &_flags_default;
+  unsigned char _align = 12;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  l4_addr_t __start;
+  if (lua_isuserdata(L, 2)) {
+    _start = cppbind::type_info::typed_pointer_cast<l4_addr_t>(*static_cast<void **>(lua_touserdata(L, 2)));
+  } else {
+    luaL_checktype(L, 2, LUA_TNUMBER);
+    __start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
+    _start = &__start;
+  }
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
+
+  if (lua_gettop(L) < 4) goto function_call;
+  luaL_checktype(L, 4, LUA_TNUMBER);
+  _flags_proxy = L4Re::Rm::Flags(cppbind::lua::tointegral<l4_uint32_t>(L, 4));
+  _flags = &_flags_proxy;
+
+  if (lua_gettop(L) < 5) goto function_call;
+  luaL_checktype(L, 5, LUA_TNUMBER);
+  _align = cppbind::lua::tointegral<unsigned char>(L, 5);
+
+  function_call:
+
+  auto __out = ___self->reserve_area(_start, _size, *_flags, _align);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  cppbind::lua::pushintegral(L, *_start);
+
+  return 2;
+}
+
+int l4_re_rm_attach(lua_State *L)
+{
+  if (lua_gettop(L) < 5 || lua_gettop(L) > 7)
+    return luaL_error(L, "function expects between 5 and 7 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t * _start;
+  unsigned long _size;
+  L4Re::Rm::Flags _flags_proxy;
+  const L4Re::Rm::Flags * _flags;
+  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
+  L4Re::Rm::Offset _offs = 0;
+  unsigned char _align = 12;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  l4_addr_t __start;
+  if (lua_isuserdata(L, 2)) {
+    _start = cppbind::type_info::typed_pointer_cast<l4_addr_t>(*static_cast<void **>(lua_touserdata(L, 2)));
+  } else {
+    luaL_checktype(L, 2, LUA_TNUMBER);
+    __start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
+    _start = &__start;
+  }
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
+
+  luaL_checktype(L, 4, LUA_TNUMBER);
+  _flags_proxy = L4Re::Rm::Flags(cppbind::lua::tointegral<l4_uint32_t>(L, 4));
+  _flags = &_flags_proxy;
+
+  auto __mem = L4::Ipc::Cap<L4Re::Dataspace>(*cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 5))));
+  _mem = &__mem;
+
+  if (lua_gettop(L) < 6) goto function_call;
+  luaL_checktype(L, 6, LUA_TNUMBER);
+  _offs = cppbind::lua::tointegral<L4Re::Rm::Offset>(L, 6);
+
+  if (lua_gettop(L) < 7) goto function_call;
+  luaL_checktype(L, 7, LUA_TNUMBER);
+  _align = cppbind::lua::tointegral<unsigned char>(L, 7);
+
+  function_call:
+
+  auto __out = ___self->attach(_start, _size, *_flags, *_mem, _offs, _align);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  cppbind::lua::pushintegral(L, *_start);
+
+  return 2;
+}
+
+int l4_re_rm_detach_1(lua_State *L)
+{
+  if (lua_gettop(L) < 3 || lua_gettop(L) > 4)
+    return luaL_error(L, "function expects between 3 and 4 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t _addr;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> _task_default = This_task;
+  const L4::Cap<L4::Task> * _task = &_task_default;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _addr = cppbind::lua::tointegral<l4_addr_t>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TUSERDATA);
+  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 3)));
+
+  if (lua_gettop(L) < 4) goto function_call;
+  luaL_checktype(L, 4, LUA_TUSERDATA);
+  _task = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 4)));
+
+  function_call:
+
+  auto __out = ___self->detach(_addr, _mem, *_task);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_rm_detach_2(lua_State *L)
+{
+  if (lua_gettop(L) < 3 || lua_gettop(L) > 4)
+    return luaL_error(L, "function expects between 3 and 4 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  void * _addr;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> _task_default = This_task;
+  const L4::Cap<L4::Task> * _task = &_task_default;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TUSERDATA);
+  _addr = cppbind::type_info::typed_pointer_cast<void>(*static_cast<void **>(lua_touserdata(L, 2)));
+
+  luaL_checktype(L, 3, LUA_TUSERDATA);
+  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 3)));
+
+  if (lua_gettop(L) < 4) goto function_call;
+  luaL_checktype(L, 4, LUA_TUSERDATA);
+  _task = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 4)));
+
+  function_call:
+
+  auto __out = ___self->detach(_addr, _mem, *_task);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 2;
+}
+
+int l4_re_rm_detach_3(lua_State *L)
+{
+  if (lua_gettop(L) != 5)
+    return luaL_error(L, "function expects 5 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t _start;
+  unsigned long _size;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> * _task;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
+
+  luaL_checktype(L, 4, LUA_TUSERDATA);
+  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 4)));
+
+  luaL_checktype(L, 5, LUA_TUSERDATA);
+  _task = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 5)));
+
+  auto __out = ___self->detach(_start, _size, _mem, *_task);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_rm_find(lua_State *L)
+{
+  if (lua_gettop(L) != 6)
+    return luaL_error(L, "function expects 6 arguments");
+
+  using namespace L4Re;
+
+  L4Re::Rm * ___self;
+  l4_addr_t * _addr;
+  unsigned long * _size;
+  L4Re::Rm::Offset * _offset;
+  L4Re::Rm::Flags * _flags;
+  L4::Cap<L4Re::Dataspace> * _m;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  l4_addr_t __addr;
+  if (lua_isuserdata(L, 2)) {
+    _addr = cppbind::type_info::typed_pointer_cast<l4_addr_t>(*static_cast<void **>(lua_touserdata(L, 2)));
+  } else {
+    luaL_checktype(L, 2, LUA_TNUMBER);
+    __addr = cppbind::lua::tointegral<l4_addr_t>(L, 2);
+    _addr = &__addr;
+  }
+
+  unsigned long __size;
+  if (lua_isuserdata(L, 3)) {
+    _size = cppbind::type_info::typed_pointer_cast<unsigned long>(*static_cast<void **>(lua_touserdata(L, 3)));
+  } else {
+    luaL_checktype(L, 3, LUA_TNUMBER);
+    __size = cppbind::lua::tointegral<unsigned long>(L, 3);
+    _size = &__size;
+  }
+
+  L4Re::Rm::Offset __offset;
+  if (lua_isuserdata(L, 4)) {
+    _offset = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Offset>(*static_cast<void **>(lua_touserdata(L, 4)));
+  } else {
+    luaL_checktype(L, 4, LUA_TNUMBER);
+    __offset = cppbind::lua::tointegral<L4Re::Rm::Offset>(L, 4);
+    _offset = &__offset;
+  }
+
+  luaL_checktype(L, 5, LUA_TUSERDATA);
+  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Flags>(*static_cast<void **>(lua_touserdata(L, 5)));
+
+  luaL_checktype(L, 6, LUA_TUSERDATA);
+  _m = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 6)));
+
+  auto __out = ___self->find(_addr, _size, _offset, _flags, _m);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  cppbind::lua::pushintegral(L, *_addr);
+  cppbind::lua::pushintegral(L, *_size);
+  cppbind::lua::pushintegral(L, *_offset);
+
+  return 4;
+}
+
+int l4_re_rm_detach_4(lua_State *L)
+{
+  if (lua_gettop(L) != 6)
+    return luaL_error(L, "function expects 6 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t _start;
+  unsigned long _size;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> * _task;
+  unsigned int _flags;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
+
+  luaL_checktype(L, 4, LUA_TUSERDATA);
+  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 4)));
+
+  luaL_checktype(L, 5, LUA_TUSERDATA);
+  _task = cppbind::type_info::typed_pointer_cast<L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 5)));
+
+  luaL_checktype(L, 6, LUA_TNUMBER);
+  _flags = cppbind::lua::tointegral<unsigned int>(L, 6);
+
+  auto __out = ___self->detach(_start, _size, _mem, *_task, _flags);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_rm_attach_void(lua_State *L)
+{
+  if (lua_gettop(L) < 5 || lua_gettop(L) > 7)
+    return luaL_error(L, "function expects between 5 and 7 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  void ** _start;
+  unsigned long _size;
+  L4Re::Rm::Flags _flags_proxy;
+  const L4Re::Rm::Flags * _flags;
+  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
+  L4Re::Rm::Offset _offs = 0;
+  unsigned char _align = 12;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TUSERDATA);
+  _start = cppbind::type_info::typed_pointer_cast<void *>(*static_cast<void **>(lua_touserdata(L, 2)));
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
+
+  luaL_checktype(L, 4, LUA_TNUMBER);
+  _flags_proxy = L4Re::Rm::Flags(cppbind::lua::tointegral<l4_uint32_t>(L, 4));
+  _flags = &_flags_proxy;
+
+  auto __mem = L4::Ipc::Cap<L4Re::Dataspace>(*cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 5))));
+  _mem = &__mem;
+
+  if (lua_gettop(L) < 6) goto function_call;
+  luaL_checktype(L, 6, LUA_TNUMBER);
+  _offs = cppbind::lua::tointegral<L4Re::Rm::Offset>(L, 6);
+
+  if (lua_gettop(L) < 7) goto function_call;
+  luaL_checktype(L, 7, LUA_TNUMBER);
+  _align = cppbind::lua::tointegral<unsigned char>(L, 7);
+
+  function_call:
+
+  auto __out = ___self->attach<void>(_start, _size, *_flags, *_mem, _offs, _align);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_rm_free_area(lua_State *L)
+{
+  if (lua_gettop(L) != 2)
+    return luaL_error(L, "function expects 2 arguments");
+
+  using namespace L4;
+  using namespace Ipc;
+  using namespace Msg;
+
+  const L4Re::Rm * ___self;
+  unsigned long _a;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _a = cppbind::lua::tointegral<unsigned long>(L, 2);
+
+  auto __out = ___self->free_area(_a);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_rm_f_new(lua_State *L)
+{
+  if (lua_gettop(L) != 0)
+    return luaL_error(L, "function expects 0 arguments");
+
+  using namespace L4Re;
+
+  auto __out = new L4Re::Rm::F();
+
+  *static_cast<void **>(lua_newuserdata(L, sizeof(void *))) = cppbind::type_info::make_typed(__out, true);
+  cppbind::lua::setmetatable(L, "METATABLE__ZTSN4L4Re2Rm1FE");;
+
+  return 1;
+}
 
 int l4_re_rm_f_flags_new_1(lua_State *L)
 {
@@ -260,13 +664,15 @@ int l4_re_rm_f_flags_bw_or_assign(lua_State *L)
   using namespace Types;
 
   L4Re::Rm::F::Flags * ___self;
+  L4Re::Rm::F::Flags _r_proxy;
   const L4Re::Rm::F::Flags * _r;
 
   luaL_checktype(L, 1, LUA_TUSERDATA);
   ___self = cppbind::type_info::typed_pointer_cast<L4Re::Rm::F::Flags>(*static_cast<void **>(lua_touserdata(L, 1)));
 
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _r = cppbind::type_info::typed_pointer_cast<L4Re::Rm::F::Flags>(*static_cast<void **>(lua_touserdata(L, 2)));
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _r_proxy = L4Re::Rm::F::Flags(cppbind::lua::tointegral<l4_uint32_t>(L, 2));
+  _r = &_r_proxy;
 
   auto __out = ___self->operator|=(*_r);
 
@@ -285,13 +691,15 @@ int l4_re_rm_f_flags_bw_and_assign(lua_State *L)
   using namespace Types;
 
   L4Re::Rm::F::Flags * ___self;
+  L4Re::Rm::F::Flags _r_proxy;
   const L4Re::Rm::F::Flags * _r;
 
   luaL_checktype(L, 1, LUA_TUSERDATA);
   ___self = cppbind::type_info::typed_pointer_cast<L4Re::Rm::F::Flags>(*static_cast<void **>(lua_touserdata(L, 1)));
 
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _r = cppbind::type_info::typed_pointer_cast<L4Re::Rm::F::Flags>(*static_cast<void **>(lua_touserdata(L, 2)));
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _r_proxy = L4Re::Rm::F::Flags(cppbind::lua::tointegral<l4_uint32_t>(L, 2));
+  _r = &_r_proxy;
 
   auto __out = ___self->operator&=(*_r);
 
@@ -342,404 +750,49 @@ int l4_re_rm_f_flags_bw_not(lua_State *L)
   return 1;
 }
 
-int l4_re_rm_f_new(lua_State *L)
-{
-  if (lua_gettop(L) != 0)
-    return luaL_error(L, "function expects 0 arguments");
-
-  using namespace L4Re;
-
-  auto __out = new L4Re::Rm::F();
-
-  *static_cast<void **>(lua_newuserdata(L, sizeof(void *))) = cppbind::type_info::make_typed(__out, true);
-  cppbind::lua::setmetatable(L, "METATABLE__ZTSN4L4Re2Rm1FE");;
-
-  return 1;
-}
-
-int l4_re_rm_reserve_area(lua_State *L)
-{
-  if (lua_gettop(L) < 3 || lua_gettop(L) > 5)
-    return luaL_error(L, "function expects between 3 and 5 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t * _start;
-  unsigned long _size;
-  const L4Re::Rm::Flags _flags_default = L4Re::Rm::Flags(0);
-  const L4Re::Rm::Flags * _flags = &_flags_default;;
-  unsigned char _align = 12;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  l4_addr_t __start;
-  if (lua_isuserdata(L, 2)) {
-    _start = cppbind::type_info::typed_pointer_cast<l4_addr_t>(*static_cast<void **>(lua_touserdata(L, 2)));
-  } else {
-    luaL_checktype(L, 2, LUA_TNUMBER);
-    __start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
-    _start = &__start;
-  }
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
-
-  if (lua_gettop(L) < 4) goto function_call;
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Flags>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  if (lua_gettop(L) < 5) goto function_call;
-  luaL_checktype(L, 5, LUA_TNUMBER);
-  _align = cppbind::lua::tointegral<unsigned char>(L, 5);
-
-  function_call:
-
-  auto __out = ___self->reserve_area(_start, _size, *_flags, _align);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  cppbind::lua::pushintegral(L, *_start);
-
-  return 2;
-}
-
-int l4_re_rm_attach(lua_State *L)
-{
-  if (lua_gettop(L) < 5 || lua_gettop(L) > 7)
-    return luaL_error(L, "function expects between 5 and 7 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t * _start;
-  unsigned long _size;
-  const L4Re::Rm::Flags * _flags;
-  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
-  L4Re::Rm::Offset _offs = 0;
-  unsigned char _align = 12;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  l4_addr_t __start;
-  if (lua_isuserdata(L, 2)) {
-    _start = cppbind::type_info::typed_pointer_cast<l4_addr_t>(*static_cast<void **>(lua_touserdata(L, 2)));
-  } else {
-    luaL_checktype(L, 2, LUA_TNUMBER);
-    __start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
-    _start = &__start;
-  }
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
-
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Flags>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  luaL_checktype(L, 5, LUA_TUSERDATA);
-  _mem = cppbind::type_info::typed_pointer_cast<L4::Ipc::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 5)));
-
-  if (lua_gettop(L) < 6) goto function_call;
-  luaL_checktype(L, 6, LUA_TNUMBER);
-  _offs = cppbind::lua::tointegral<L4Re::Rm::Offset>(L, 6);
-
-  if (lua_gettop(L) < 7) goto function_call;
-  luaL_checktype(L, 7, LUA_TNUMBER);
-  _align = cppbind::lua::tointegral<unsigned char>(L, 7);
-
-  function_call:
-
-  auto __out = ___self->attach(_start, _size, *_flags, *_mem, _offs, _align);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  cppbind::lua::pushintegral(L, *_start);
-
-  return 2;
-}
-
-int l4_re_rm_detach_1(lua_State *L)
-{
-  if (lua_gettop(L) < 3 || lua_gettop(L) > 4)
-    return luaL_error(L, "function expects between 3 and 4 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t _addr;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> _task_default = This_task;
-  const L4::Cap<L4::Task> * _task = &_task_default;;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _addr = cppbind::lua::tointegral<l4_addr_t>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TUSERDATA);
-  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 3)));
-
-  if (lua_gettop(L) < 4) goto function_call;
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _task = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  function_call:
-
-  auto __out = ___self->detach(_addr, _mem, *_task);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_rm_detach_2(lua_State *L)
-{
-  if (lua_gettop(L) < 3 || lua_gettop(L) > 4)
-    return luaL_error(L, "function expects between 3 and 4 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  void * _addr;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> _task_default = This_task;
-  const L4::Cap<L4::Task> * _task = &_task_default;;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _addr = cppbind::type_info::typed_pointer_cast<void>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  luaL_checktype(L, 3, LUA_TUSERDATA);
-  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 3)));
-
-  if (lua_gettop(L) < 4) goto function_call;
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _task = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  function_call:
-
-  auto __out = ___self->detach(_addr, _mem, *_task);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 2;
-}
-
-int l4_re_rm_detach_3(lua_State *L)
-{
-  if (lua_gettop(L) != 5)
-    return luaL_error(L, "function expects 5 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t _start;
-  unsigned long _size;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> * _task;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
-
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  luaL_checktype(L, 5, LUA_TUSERDATA);
-  _task = cppbind::type_info::typed_pointer_cast<const L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 5)));
-
-  auto __out = ___self->detach(_start, _size, _mem, *_task);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_rm_find(lua_State *L)
-{
-  if (lua_gettop(L) != 6)
-    return luaL_error(L, "function expects 6 arguments");
-
-  using namespace L4Re;
-
-  L4Re::Rm * ___self;
-  l4_addr_t * _addr;
-  unsigned long * _size;
-  L4Re::Rm::Offset * _offset;
-  L4Re::Rm::Flags * _flags;
-  L4::Cap<L4Re::Dataspace> * _m;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  l4_addr_t __addr;
-  if (lua_isuserdata(L, 2)) {
-    _addr = cppbind::type_info::typed_pointer_cast<l4_addr_t>(*static_cast<void **>(lua_touserdata(L, 2)));
-  } else {
-    luaL_checktype(L, 2, LUA_TNUMBER);
-    __addr = cppbind::lua::tointegral<l4_addr_t>(L, 2);
-    _addr = &__addr;
-  }
-
-  unsigned long __size;
-  if (lua_isuserdata(L, 3)) {
-    _size = cppbind::type_info::typed_pointer_cast<unsigned long>(*static_cast<void **>(lua_touserdata(L, 3)));
-  } else {
-    luaL_checktype(L, 3, LUA_TNUMBER);
-    __size = cppbind::lua::tointegral<unsigned long>(L, 3);
-    _size = &__size;
-  }
-
-  L4Re::Rm::Offset __offset;
-  if (lua_isuserdata(L, 4)) {
-    _offset = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Offset>(*static_cast<void **>(lua_touserdata(L, 4)));
-  } else {
-    luaL_checktype(L, 4, LUA_TNUMBER);
-    __offset = cppbind::lua::tointegral<L4Re::Rm::Offset>(L, 4);
-    _offset = &__offset;
-  }
-
-  luaL_checktype(L, 5, LUA_TUSERDATA);
-  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Flags>(*static_cast<void **>(lua_touserdata(L, 5)));
-
-  luaL_checktype(L, 6, LUA_TUSERDATA);
-  _m = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 6)));
-
-  auto __out = ___self->find(_addr, _size, _offset, _flags, _m);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  cppbind::lua::pushintegral(L, *_addr);
-  cppbind::lua::pushintegral(L, *_size);
-  cppbind::lua::pushintegral(L, *_offset);
-
-  return 4;
-}
-
-int l4_re_rm_detach_4(lua_State *L)
-{
-  if (lua_gettop(L) != 6)
-    return luaL_error(L, "function expects 6 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t _start;
-  unsigned long _size;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> * _task;
-  unsigned int _flags;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _start = cppbind::lua::tointegral<l4_addr_t>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
-
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _mem = cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  luaL_checktype(L, 5, LUA_TUSERDATA);
-  _task = cppbind::type_info::typed_pointer_cast<L4::Cap<L4::Task>>(*static_cast<void **>(lua_touserdata(L, 5)));
-
-  luaL_checktype(L, 6, LUA_TNUMBER);
-  _flags = cppbind::lua::tointegral<unsigned int>(L, 6);
-
-  auto __out = ___self->detach(_start, _size, _mem, *_task, _flags);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_rm_attach_void(lua_State *L)
-{
-  if (lua_gettop(L) < 5 || lua_gettop(L) > 7)
-    return luaL_error(L, "function expects between 5 and 7 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  void ** _start;
-  unsigned long _size;
-  const L4Re::Rm::Flags * _flags;
-  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
-  L4Re::Rm::Offset _offs = 0;
-  unsigned char _align = 12;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _start = cppbind::type_info::typed_pointer_cast<void *>(*static_cast<void **>(lua_touserdata(L, 2)));
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _size = cppbind::lua::tointegral<unsigned long>(L, 3);
-
-  luaL_checktype(L, 4, LUA_TUSERDATA);
-  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Rm::Flags>(*static_cast<void **>(lua_touserdata(L, 4)));
-
-  luaL_checktype(L, 5, LUA_TUSERDATA);
-  _mem = cppbind::type_info::typed_pointer_cast<L4::Ipc::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 5)));
-
-  if (lua_gettop(L) < 6) goto function_call;
-  luaL_checktype(L, 6, LUA_TNUMBER);
-  _offs = cppbind::lua::tointegral<L4Re::Rm::Offset>(L, 6);
-
-  if (lua_gettop(L) < 7) goto function_call;
-  luaL_checktype(L, 7, LUA_TNUMBER);
-  _align = cppbind::lua::tointegral<unsigned char>(L, 7);
-
-  function_call:
-
-  auto __out = ___self->attach<void>(_start, _size, *_flags, *_mem, _offs, _align);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_rm_free_area(lua_State *L)
-{
-  if (lua_gettop(L) != 2)
-    return luaL_error(L, "function expects 2 arguments");
-
-  using namespace L4;
-  using namespace Ipc;
-  using namespace Msg;
-
-  const L4Re::Rm * ___self;
-  unsigned long _a;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Rm>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _a = cppbind::lua::tointegral<unsigned long>(L, 2);
-
-  auto __out = ___self->free_area(_a);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
 void _register(lua_State *L)
 {
   lua_createtable(L, 0, 0);
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4IpcCap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspace");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspaceF");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4ReDataspaceFlags");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
 
   lua_createtable(L, 0, 0);
 
@@ -803,6 +856,23 @@ void _register(lua_State *L)
   lua_pushinteger(L, L4Re::Rm::F::Region_flags_mask);
   lua_setfield(L, -2, "RM_F_REGION_FLAGS_MASK");
 
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "Rm");
+
+  lua_createtable(L, 0, 1);
+
+  {
+    static luaL_Reg const _functions[] = {
+      {"new", l4_re_rm_f_new},
+      {nullptr, nullptr}
+    };
+
+    luaL_setfuncs(L, _functions, 0);
+  }
+
+  lua_setfield(L, -2, "RmF");
+
   lua_createtable(L, 0, 6);
 
   {
@@ -821,28 +891,26 @@ void _register(lua_State *L)
 
   lua_setfield(L, -2, "RmFFlags");
 
-  lua_createtable(L, 0, 1);
-
-  {
-    static luaL_Reg const _functions[] = {
-      {"new", l4_re_rm_f_new},
-      {nullptr, nullptr}
-    };
-
-    luaL_setfuncs(L, _functions, 0);
-  }
-
-  lua_setfield(L, -2, "RmF");
-
-  lua_createtable(L, 0, 0);
-
-  lua_setfield(L, -2, "Rm");
-
   lua_setfield(L, -2, "L4Re");
 }
 
 void _createmetatables(lua_State *L)
 {
+  cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re2RmE",
+    {
+      {"reserve_area", l4_re_rm_reserve_area},
+      {"attach", l4_re_rm_attach},
+      {"detach_1", l4_re_rm_detach_1},
+      {"detach_2", l4_re_rm_detach_2},
+      {"detach_3", l4_re_rm_detach_3},
+      {"find", l4_re_rm_find},
+      {"detach_4", l4_re_rm_detach_4},
+      {"attach_void", l4_re_rm_attach_void},
+      {"free_area", l4_re_rm_free_area}
+    });
+
+  cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re2Rm1FE", {});
+
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re2Rm1F5FlagsE",
     {
       {"region_flags", l4_re_rm_f_flags_region_flags},
@@ -857,21 +925,6 @@ void _createmetatables(lua_State *L)
       {"bw_not", l4_re_rm_f_flags_bw_not},
       {"copy", cppbind::lua::bind_copy},
       {"move", cppbind::lua::bind_move}
-    });
-
-  cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re2Rm1FE", {});
-
-  cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re2RmE",
-    {
-      {"reserve_area", l4_re_rm_reserve_area},
-      {"attach", l4_re_rm_attach},
-      {"detach_1", l4_re_rm_detach_1},
-      {"detach_2", l4_re_rm_detach_2},
-      {"detach_3", l4_re_rm_detach_3},
-      {"find", l4_re_rm_find},
-      {"detach_4", l4_re_rm_detach_4},
-      {"attach_void", l4_re_rm_attach_void},
-      {"free_area", l4_re_rm_free_area}
     });
 }
 

@@ -13,4 +13,26 @@ extern "C" {
 
 #include "/home/timo/github/l4re/l4/pkg/l4re-c-examples/server/src/c/bind/consts_c.h"
 
+int get_l4_pageshift(void)
+{
+  auto __out = L4_PAGESHIFT;
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+int get_l4_superpageshift(void)
+{
+  auto __out = L4_SUPERPAGESHIFT;
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
 } // extern "C"

@@ -3,15 +3,16 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#include "/home/timo/github/projects/cppbind/generate/cppbind/lua/lua_util.h"
+
 #include "/home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/mem_alloc"
 
-#include "cppbind/type_info.h"
+#include "/home/timo/github/projects/cppbind/generate/cppbind/type_info.h"
 
 namespace cppbind::type_info {
   type_instance<L4Re::Mem_alloc> _ZTSN4L4Re9Mem_allocE;
+  type_instance<L4::Cap<L4Re::Dataspace>> _ZTSN2L43CapIN4L4Re9DataspaceEEE;
 }
-
-#include "cppbind/lua/lua_util.h"
 
 namespace
 {
@@ -84,6 +85,38 @@ void _register(lua_State *L)
 
   lua_createtable(L, 0, 0);
 
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
   lua_pushinteger(L, L4Re::Mem_alloc::Continuous);
   lua_setfield(L, -2, "MEM_ALLOC_CONTINUOUS");
 
@@ -92,6 +125,10 @@ void _register(lua_State *L)
 
   lua_pushinteger(L, L4Re::Mem_alloc::Super_pages);
   lua_setfield(L, -2, "MEM_ALLOC_SUPER_PAGES");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "Dataspace");
 
   lua_createtable(L, 0, 0);
 

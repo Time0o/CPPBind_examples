@@ -16,18 +16,6 @@ extern "C" {
 
 #include "/home/timo/github/l4re/l4/pkg/l4re-c-examples/server/src/c/bind/capability_c.h"
 
-struct l4_cap_base
-{
-  union {
-    char mem[8];
-    void *ptr;
-  } obj;
-
-  char is_initialized;
-  char is_const;
-  char is_owning;
-};
-
 struct l4_re_dataspace
 {
   union {
@@ -64,7 +52,7 @@ struct l4_re_rm
   char is_owning;
 };
 
-l4_cap_idx_t l4_cap_l4_task_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_task_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -83,7 +71,7 @@ l4_cap_idx_t l4_cap_l4_task_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_task_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -102,7 +90,7 @@ l4_cap_idx_t l4_cap_l4_task_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_task_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -121,7 +109,7 @@ l4_cap_idx_t l4_cap_l4_task_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_task_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -140,7 +128,7 @@ l4_cap_idx_t l4_cap_l4_task_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_task_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -162,7 +150,7 @@ l4_cap_idx_t l4_cap_l4_task_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_task_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -184,7 +172,7 @@ l4_cap_idx_t l4_cap_l4_task_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_copy_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_task_copy_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -204,7 +192,7 @@ l4_cap_idx_t l4_cap_l4_task_copy_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_move_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_task_move_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -224,7 +212,7 @@ l4_cap_idx_t l4_cap_l4_task_move_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-void l4_cap_l4_task_delete(l4_cap_idx_t __self)
+void l4_cap_task_delete(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -236,7 +224,7 @@ void l4_cap_l4_task_delete(l4_cap_idx_t __self)
   ___self->~Cap<L4::Task>();
 }
 
-l4_cap_idx_t l4_cap_l4_task_new_l4_task(l4_cap_idx_t o)
+l4_cap_idx_t l4_cap_task_new_task(l4_cap_idx_t o)
 {
   using namespace L4;
 
@@ -256,7 +244,7 @@ l4_cap_idx_t l4_cap_l4_task_new_l4_task(l4_cap_idx_t o)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_task_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_task_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -274,7 +262,7 @@ l4_cap_idx_t l4_cap_l4_task_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_task_is_valid(l4_cap_idx_t __self)
+int l4_cap_task_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -292,7 +280,7 @@ int l4_cap_l4_task_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_task_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_task_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -316,51 +304,7 @@ l4_umword_t l4_cap_l4_task_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_
   return __ret;
 }
 
-int l4_cap_l4_task_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Task> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Task>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_task_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Task> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Task>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_task_invalidate(l4_cap_idx_t __self)
+void l4_cap_task_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -372,7 +316,7 @@ void l4_cap_l4_task_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_kobject_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -391,7 +335,7 @@ l4_cap_idx_t l4_cap_l4_kobject_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_kobject_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -410,7 +354,7 @@ l4_cap_idx_t l4_cap_l4_kobject_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_kobject_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -429,7 +373,7 @@ l4_cap_idx_t l4_cap_l4_kobject_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_kobject_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -448,7 +392,7 @@ l4_cap_idx_t l4_cap_l4_kobject_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_move(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_kobject_move(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -470,7 +414,7 @@ l4_cap_idx_t l4_cap_l4_kobject_move(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_kobject_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -492,7 +436,7 @@ l4_cap_idx_t l4_cap_l4_kobject_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_kobject_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_kobject_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -510,7 +454,7 @@ l4_cap_idx_t l4_cap_l4_kobject_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_kobject_is_valid(l4_cap_idx_t __self)
+int l4_cap_kobject_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -528,7 +472,7 @@ int l4_cap_l4_kobject_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_kobject_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_kobject_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -552,51 +496,7 @@ l4_umword_t l4_cap_l4_kobject_snd_base(l4_cap_idx_t __self, unsigned int grant, 
   return __ret;
 }
 
-int l4_cap_l4_kobject_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Kobject> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Kobject>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_kobject_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Kobject> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Kobject>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_kobject_invalidate(l4_cap_idx_t __self)
+void l4_cap_kobject_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -608,7 +508,7 @@ void l4_cap_l4_kobject_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_meta_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_meta_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -627,7 +527,7 @@ l4_cap_idx_t l4_cap_l4_meta_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_meta_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_meta_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -646,7 +546,7 @@ l4_cap_idx_t l4_cap_l4_meta_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_meta_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_meta_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -665,7 +565,7 @@ l4_cap_idx_t l4_cap_l4_meta_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_meta_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_meta_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -684,7 +584,7 @@ l4_cap_idx_t l4_cap_l4_meta_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_meta_move(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_meta_move(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -706,7 +606,7 @@ l4_cap_idx_t l4_cap_l4_meta_move(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_meta_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_meta_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -728,7 +628,7 @@ l4_cap_idx_t l4_cap_l4_meta_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_meta_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_meta_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -746,7 +646,7 @@ l4_cap_idx_t l4_cap_l4_meta_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_meta_is_valid(l4_cap_idx_t __self)
+int l4_cap_meta_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -764,7 +664,7 @@ int l4_cap_l4_meta_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_meta_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_meta_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -788,51 +688,7 @@ l4_umword_t l4_cap_l4_meta_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_
   return __ret;
 }
 
-int l4_cap_l4_meta_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Meta> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Meta>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_meta_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Meta> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Meta>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_meta_invalidate(l4_cap_idx_t __self)
+void l4_cap_meta_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -844,7 +700,7 @@ void l4_cap_l4_meta_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_factory_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_factory_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -863,7 +719,7 @@ l4_cap_idx_t l4_cap_l4_factory_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_factory_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_factory_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -882,7 +738,7 @@ l4_cap_idx_t l4_cap_l4_factory_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_factory_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_factory_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -901,7 +757,7 @@ l4_cap_idx_t l4_cap_l4_factory_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_factory_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_factory_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -920,7 +776,7 @@ l4_cap_idx_t l4_cap_l4_factory_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_factory_move(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_factory_move(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -942,7 +798,7 @@ l4_cap_idx_t l4_cap_l4_factory_move(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_factory_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_factory_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -964,7 +820,7 @@ l4_cap_idx_t l4_cap_l4_factory_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_factory_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_factory_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -982,7 +838,7 @@ l4_cap_idx_t l4_cap_l4_factory_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_factory_is_valid(l4_cap_idx_t __self)
+int l4_cap_factory_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1000,7 +856,7 @@ int l4_cap_l4_factory_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_factory_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_factory_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -1024,51 +880,7 @@ l4_umword_t l4_cap_l4_factory_snd_base(l4_cap_idx_t __self, unsigned int grant, 
   return __ret;
 }
 
-int l4_cap_l4_factory_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Factory> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Factory>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_factory_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Factory> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Factory>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_factory_invalidate(l4_cap_idx_t __self)
+void l4_cap_factory_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1080,7 +892,7 @@ void l4_cap_l4_factory_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_thread_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_thread_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -1099,7 +911,7 @@ l4_cap_idx_t l4_cap_l4_thread_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_thread_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_thread_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -1118,7 +930,7 @@ l4_cap_idx_t l4_cap_l4_thread_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_thread_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_thread_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -1137,7 +949,7 @@ l4_cap_idx_t l4_cap_l4_thread_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_thread_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_thread_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -1156,7 +968,7 @@ l4_cap_idx_t l4_cap_l4_thread_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_thread_move(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_thread_move(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -1178,7 +990,7 @@ l4_cap_idx_t l4_cap_l4_thread_move(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_thread_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_thread_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -1200,7 +1012,7 @@ l4_cap_idx_t l4_cap_l4_thread_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_thread_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_thread_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1218,7 +1030,7 @@ l4_cap_idx_t l4_cap_l4_thread_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_thread_is_valid(l4_cap_idx_t __self)
+int l4_cap_thread_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1236,7 +1048,7 @@ int l4_cap_l4_thread_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_thread_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_thread_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -1260,51 +1072,7 @@ l4_umword_t l4_cap_l4_thread_snd_base(l4_cap_idx_t __self, unsigned int grant, l
   return __ret;
 }
 
-int l4_cap_l4_thread_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Thread> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Thread>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_thread_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Thread> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Thread>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_thread_invalidate(l4_cap_idx_t __self)
+void l4_cap_thread_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1316,7 +1084,7 @@ void l4_cap_l4_thread_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_irq_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_irq_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -1335,7 +1103,7 @@ l4_cap_idx_t l4_cap_l4_irq_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_irq_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_irq_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -1354,7 +1122,7 @@ l4_cap_idx_t l4_cap_l4_irq_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_irq_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_irq_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -1373,7 +1141,7 @@ l4_cap_idx_t l4_cap_l4_irq_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_irq_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_irq_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -1392,7 +1160,7 @@ l4_cap_idx_t l4_cap_l4_irq_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_irq_move(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_irq_move(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -1414,7 +1182,7 @@ l4_cap_idx_t l4_cap_l4_irq_move(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_irq_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_irq_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -1436,7 +1204,7 @@ l4_cap_idx_t l4_cap_l4_irq_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_irq_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_irq_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1454,7 +1222,7 @@ l4_cap_idx_t l4_cap_l4_irq_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_irq_is_valid(l4_cap_idx_t __self)
+int l4_cap_irq_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1472,7 +1240,7 @@ int l4_cap_l4_irq_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_irq_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_irq_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -1496,51 +1264,7 @@ l4_umword_t l4_cap_l4_irq_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_c
   return __ret;
 }
 
-int l4_cap_l4_irq_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Irq> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Irq>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_irq_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Irq> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Irq>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_irq_invalidate(l4_cap_idx_t __self)
+void l4_cap_irq_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1552,7 +1276,7 @@ void l4_cap_l4_irq_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_vm_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_vm_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -1571,7 +1295,7 @@ l4_cap_idx_t l4_cap_l4_vm_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_vm_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_vm_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -1590,7 +1314,7 @@ l4_cap_idx_t l4_cap_l4_vm_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_vm_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_vm_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -1609,7 +1333,7 @@ l4_cap_idx_t l4_cap_l4_vm_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_vm_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_vm_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -1628,7 +1352,7 @@ l4_cap_idx_t l4_cap_l4_vm_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_vm_move(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_vm_move(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -1650,7 +1374,7 @@ l4_cap_idx_t l4_cap_l4_vm_move(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_vm_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_vm_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -1672,7 +1396,7 @@ l4_cap_idx_t l4_cap_l4_vm_copy(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_vm_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_vm_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1690,7 +1414,7 @@ l4_cap_idx_t l4_cap_l4_vm_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_vm_is_valid(l4_cap_idx_t __self)
+int l4_cap_vm_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -1708,7 +1432,7 @@ int l4_cap_l4_vm_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_vm_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_vm_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -1732,51 +1456,7 @@ l4_umword_t l4_cap_l4_vm_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_ca
   return __ret;
 }
 
-int l4_cap_l4_vm_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Vm> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Vm>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_vm_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4::Vm> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4::Vm>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_vm_invalidate(l4_cap_idx_t __self)
+void l4_cap_vm_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2059,50 +1739,6 @@ l4_umword_t l4_cap_void_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap
   return __ret;
 }
 
-int l4_cap_void_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<void> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<void>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_void_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<void> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<void>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
 void l4_cap_void_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
@@ -2115,7 +1751,7 @@ void l4_cap_void_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_dataspace_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -2134,7 +1770,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_dataspace_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -2153,7 +1789,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_dataspace_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -2172,7 +1808,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_dataspace_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -2191,7 +1827,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_dataspace_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -2213,7 +1849,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_move_1(l4_cap_idx_t __self, l4_cap_idx_t src
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_dataspace_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -2235,7 +1871,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src
   return __ret;
 }
 
-struct l4_re_dataspace l4_cap_l4_re_dataspace_access(l4_cap_idx_t __self)
+struct l4_re_dataspace l4_cap_dataspace_access(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2255,7 +1891,7 @@ struct l4_re_dataspace l4_cap_l4_re_dataspace_access(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_copy_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_dataspace_copy_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2275,7 +1911,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_copy_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_move_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_dataspace_move_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2295,7 +1931,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_move_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-void l4_cap_l4_re_dataspace_delete(l4_cap_idx_t __self)
+void l4_cap_dataspace_delete(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2307,7 +1943,7 @@ void l4_cap_l4_re_dataspace_delete(l4_cap_idx_t __self)
   ___self->~Cap<L4Re::Dataspace>();
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_new_l4_re_dataspace(l4_cap_idx_t o)
+l4_cap_idx_t l4_cap_dataspace_new_dataspace(l4_cap_idx_t o)
 {
   using namespace L4;
 
@@ -2327,7 +1963,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_new_l4_re_dataspace(l4_cap_idx_t o)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_dataspace_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_dataspace_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2345,7 +1981,7 @@ l4_cap_idx_t l4_cap_l4_re_dataspace_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_re_dataspace_is_valid(l4_cap_idx_t __self)
+int l4_cap_dataspace_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2363,7 +1999,7 @@ int l4_cap_l4_re_dataspace_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_re_dataspace_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_dataspace_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -2387,51 +2023,7 @@ l4_umword_t l4_cap_l4_re_dataspace_snd_base(l4_cap_idx_t __self, unsigned int gr
   return __ret;
 }
 
-int l4_cap_l4_re_dataspace_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4Re::Dataspace> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4Re::Dataspace>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_re_dataspace_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4Re::Dataspace> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4Re::Dataspace>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_re_dataspace_invalidate(l4_cap_idx_t __self)
+void l4_cap_dataspace_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2443,7 +2035,7 @@ void l4_cap_l4_re_dataspace_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_mem_alloc_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -2462,7 +2054,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_mem_alloc_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -2481,7 +2073,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_mem_alloc_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -2500,7 +2092,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_mem_alloc_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -2519,7 +2111,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_mem_alloc_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -2541,7 +2133,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_move_1(l4_cap_idx_t __self, l4_cap_idx_t src
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_mem_alloc_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -2563,7 +2155,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src
   return __ret;
 }
 
-struct l4_re_mem_alloc l4_cap_l4_re_mem_alloc_access(l4_cap_idx_t __self)
+struct l4_re_mem_alloc l4_cap_mem_alloc_access(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2583,7 +2175,7 @@ struct l4_re_mem_alloc l4_cap_l4_re_mem_alloc_access(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_copy_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_mem_alloc_copy_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2603,7 +2195,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_copy_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_move_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_mem_alloc_move_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2623,7 +2215,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_move_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-void l4_cap_l4_re_mem_alloc_delete(l4_cap_idx_t __self)
+void l4_cap_mem_alloc_delete(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2635,7 +2227,7 @@ void l4_cap_l4_re_mem_alloc_delete(l4_cap_idx_t __self)
   ___self->~Cap<L4Re::Mem_alloc>();
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_l4_re_mem_alloc(l4_cap_idx_t o)
+l4_cap_idx_t l4_cap_mem_alloc_new_mem_alloc(l4_cap_idx_t o)
 {
   using namespace L4;
 
@@ -2655,7 +2247,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_new_l4_re_mem_alloc(l4_cap_idx_t o)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_mem_alloc_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_mem_alloc_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2673,7 +2265,7 @@ l4_cap_idx_t l4_cap_l4_re_mem_alloc_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_re_mem_alloc_is_valid(l4_cap_idx_t __self)
+int l4_cap_mem_alloc_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2691,7 +2283,7 @@ int l4_cap_l4_re_mem_alloc_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_re_mem_alloc_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_mem_alloc_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -2715,51 +2307,7 @@ l4_umword_t l4_cap_l4_re_mem_alloc_snd_base(l4_cap_idx_t __self, unsigned int gr
   return __ret;
 }
 
-int l4_cap_l4_re_mem_alloc_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4Re::Mem_alloc> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4Re::Mem_alloc>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_re_mem_alloc_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4Re::Mem_alloc> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4Re::Mem_alloc>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_re_mem_alloc_invalidate(l4_cap_idx_t __self)
+void l4_cap_mem_alloc_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2771,7 +2319,7 @@ void l4_cap_l4_re_mem_alloc_invalidate(l4_cap_idx_t __self)
   ___self->invalidate();
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_new_1(unsigned long cap)
+l4_cap_idx_t l4_cap_rm_new_1(unsigned long cap)
 {
   using namespace L4;
 
@@ -2790,7 +2338,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_new_1(unsigned long cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_new_2(unsigned int cap)
+l4_cap_idx_t l4_cap_rm_new_2(unsigned int cap)
 {
   using namespace L4;
 
@@ -2809,7 +2357,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_new_2(unsigned int cap)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_new_3(l4_cap_idx_t idx)
+l4_cap_idx_t l4_cap_rm_new_3(l4_cap_idx_t idx)
 {
   using namespace L4;
 
@@ -2828,7 +2376,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_new_3(l4_cap_idx_t idx)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_new_4(unsigned int _1)
+l4_cap_idx_t l4_cap_rm_new_4(unsigned int _1)
 {
   using namespace L4;
 
@@ -2847,7 +2395,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_new_4(unsigned int _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_rm_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -2869,7 +2417,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_move_1(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
+l4_cap_idx_t l4_cap_rm_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
 {
   using namespace L4;
 
@@ -2891,7 +2439,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_copy_1(l4_cap_idx_t __self, l4_cap_idx_t src)
   return __ret;
 }
 
-struct l4_re_rm l4_cap_l4_re_rm_access(l4_cap_idx_t __self)
+struct l4_re_rm l4_cap_rm_access(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2911,7 +2459,7 @@ struct l4_re_rm l4_cap_l4_re_rm_access(l4_cap_idx_t __self)
   return __ret;
 }
 
-void l4_cap_l4_re_rm_delete(l4_cap_idx_t __self)
+void l4_cap_rm_delete(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -2923,7 +2471,7 @@ void l4_cap_l4_re_rm_delete(l4_cap_idx_t __self)
   ___self->~Cap<L4Re::Rm>();
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_copy_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_rm_copy_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2943,7 +2491,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_copy_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_move_2(l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_rm_move_2(l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2963,7 +2511,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_move_2(l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_copy_assign(l4_cap_idx_t __self, l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_rm_copy_assign(l4_cap_idx_t __self, l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -2985,7 +2533,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_copy_assign(l4_cap_idx_t __self, l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_move_assign(l4_cap_idx_t __self, l4_cap_idx_t _1)
+l4_cap_idx_t l4_cap_rm_move_assign(l4_cap_idx_t __self, l4_cap_idx_t _1)
 {
   using namespace L4;
 
@@ -3007,7 +2555,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_move_assign(l4_cap_idx_t __self, l4_cap_idx_t _1)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_new_l4_re_rm(l4_cap_idx_t o)
+l4_cap_idx_t l4_cap_rm_new_rm(l4_cap_idx_t o)
 {
   using namespace L4;
 
@@ -3027,7 +2575,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_new_l4_re_rm(l4_cap_idx_t o)
   return __ret;
 }
 
-l4_cap_idx_t l4_cap_l4_re_rm_cap(l4_cap_idx_t __self)
+l4_cap_idx_t l4_cap_rm_cap(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -3045,7 +2593,7 @@ l4_cap_idx_t l4_cap_l4_re_rm_cap(l4_cap_idx_t __self)
   return __ret;
 }
 
-int l4_cap_l4_re_rm_is_valid(l4_cap_idx_t __self)
+int l4_cap_rm_is_valid(l4_cap_idx_t __self)
 {
   using namespace L4;
 
@@ -3063,7 +2611,7 @@ int l4_cap_l4_re_rm_is_valid(l4_cap_idx_t __self)
   return __ret;
 }
 
-l4_umword_t l4_cap_l4_re_rm_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
+l4_umword_t l4_cap_rm_snd_base(l4_cap_idx_t __self, unsigned int grant, l4_cap_idx_t base)
 {
   using namespace L4;
 
@@ -3087,51 +2635,7 @@ l4_umword_t l4_cap_l4_re_rm_snd_base(l4_cap_idx_t __self, unsigned int grant, l4
   return __ret;
 }
 
-int l4_cap_l4_re_rm_eq(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4Re::Rm> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4Re::Rm>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator==(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_cap_l4_re_rm_ne(l4_cap_idx_t __self, const struct l4_cap_base * o)
-{
-  using namespace L4;
-
-  const L4::Cap<L4Re::Rm> * ___self;
-  const L4::Cap_base * _o;
-
-  auto ____self = L4::Cap<L4Re::Rm>(__self);
-  ___self = &____self;
-
-  assert(o->is_initialized);
-  _o = cppbind::c::struct_cast<const L4::Cap_base>(o);
-
-  auto __out = ___self->operator!=(*_o);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_cap_l4_re_rm_invalidate(l4_cap_idx_t __self)
+void l4_cap_rm_invalidate(l4_cap_idx_t __self)
 {
   using namespace L4;
 

@@ -79,6 +79,30 @@ enum l4_re_rm_f_region_flags {
   L4_RE_RM_F_REGION_FLAGS_MASK = 65535ULL
 };
 
+long l4_re_rm_reserve_area(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, unsigned char align);
+
+long l4_re_rm_attach(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align);
+
+int l4_re_rm_detach_1(const struct l4_re_rm * __self, l4_addr_t addr, l4_cap_idx_t mem, l4_cap_idx_t task);
+
+int l4_re_rm_detach_2(const struct l4_re_rm * __self, void * addr, l4_cap_idx_t mem, l4_cap_idx_t task);
+
+int l4_re_rm_detach_3(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task);
+
+int l4_re_rm_find(struct l4_re_rm * __self, l4_addr_t * addr, unsigned long * size, l4_re_rm_offset_t * offset, l4_re_rm_flags_t * flags, l4_cap_idx_t m);
+
+int l4_re_rm_detach_4(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task, unsigned int flags);
+
+void l4_re_rm_delete(struct l4_re_rm * __self);
+
+long l4_re_rm_attach_void(const struct l4_re_rm * __self, void ** start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align);
+
+long l4_re_rm_free_area(const struct l4_re_rm * __self, unsigned long a);
+
+struct l4_re_rm_f l4_re_rm_f_new(void);
+
+void l4_re_rm_f_delete(struct l4_re_rm_f * __self);
+
 struct l4_re_rm_f_flags l4_re_rm_f_flags_new_1(void);
 
 struct l4_re_rm_f_flags l4_re_rm_f_flags_new_2(l4_uint_32_t f);
@@ -112,30 +136,6 @@ struct l4_re_rm_f_flags l4_re_rm_f_flags_bw_and_assign(struct l4_re_rm_f_flags *
 int l4_re_rm_f_flags_cast_bool(const struct l4_re_rm_f_flags * __self);
 
 struct l4_re_rm_f_flags l4_re_rm_f_flags_bw_not(const struct l4_re_rm_f_flags * __self);
-
-struct l4_re_rm_f l4_re_rm_f_new(void);
-
-void l4_re_rm_f_delete(struct l4_re_rm_f * __self);
-
-long l4_re_rm_reserve_area(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, unsigned char align);
-
-long l4_re_rm_attach(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align);
-
-int l4_re_rm_detach_1(const struct l4_re_rm * __self, l4_addr_t addr, l4_cap_idx_t mem, l4_cap_idx_t task);
-
-int l4_re_rm_detach_2(const struct l4_re_rm * __self, void * addr, l4_cap_idx_t mem, l4_cap_idx_t task);
-
-int l4_re_rm_detach_3(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task);
-
-int l4_re_rm_find(struct l4_re_rm * __self, l4_addr_t * addr, unsigned long * size, l4_re_rm_offset_t * offset, l4_re_rm_flags_t * flags, l4_cap_idx_t m);
-
-int l4_re_rm_detach_4(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task, unsigned int flags);
-
-void l4_re_rm_delete(struct l4_re_rm * __self);
-
-long l4_re_rm_attach_void(const struct l4_re_rm * __self, void ** start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align);
-
-long l4_re_rm_free_area(const struct l4_re_rm * __self, unsigned long a);
 
 #ifdef __cplusplus
 } // extern "C"

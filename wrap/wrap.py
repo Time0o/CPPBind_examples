@@ -15,14 +15,16 @@ if __name__ == '__main__':
         def __init__(self,
                      path,
                      include_dir=None,
-                     constants=None,
+                     enums=None,
+                     variables=None,
                      functions=None,
                      records=None,
                      template_instantiations=None):
 
             self._path = os.path.join(L4RE_DIR, PKG_DIR, path)
             self._include_dir = include_dir
-            self._constants = constants
+            self._enums = enums
+            self._variables = variables
             self._functions = functions
             self._records = records
             self._template_instantiations = template_instantiations
@@ -33,9 +35,13 @@ if __name__ == '__main__':
             if self._include_dir is not None:
                 args += [f'--extra-arg=-I{self._include_dir}']
 
-            if self._constants is not None:
-                for c in self._constants:
-                    args += ['--wrap-rule', f'enum:hasName("{c}")']
+            if self._enums is not None:
+                for e in self._enums:
+                    args += ['--wrap-rule', f'enum:hasName("{e}")']
+
+            if self._variables is not None:
+                for v in self._variables:
+                    args += ['--wrap-rule', f'variable:hasName("{v}")']
 
             if self._functions is not None:
                 for f in self._functions:
@@ -59,16 +65,22 @@ if __name__ == '__main__':
         ToWrap('l4re-core/l4sys/include/cxx/ipc_types',
                records=['Cap'],
                template_instantiations='ipc_types.tcc'),
+        ToWrap('l4re-core/l4re/util/include/counting_cap_alloc',
+               records=['Counting_cap_alloc'],
+               template_instantiations='counting_cap_alloc.tcc'),
+        ToWrap('l4re-core/l4re/util/include/cap_alloc',
+               variables=['cap_alloc'],
+               template_instantiations='cap_alloc.tcc'),
         ToWrap('l4re-core/l4re/include/env',
                records=['Env']),
         ToWrap('l4re-core/l4re/include/dataspace',
-               constants=['Flags'],
+               enums=['Flags'],
                records=['Dataspace', 'Flags']),
         ToWrap('l4re-core/l4re/include/mem_alloc',
-               constants=['Mem_alloc_flags'],
+               enums=['Mem_alloc_flags'],
                records=['Mem_alloc']),
         ToWrap('l4re-core/l4re/include/rm',
-               constants=['Attach_flags', 'Region_flags'],
+               enums=['Attach_flags', 'Region_flags'],
                records=['Rm', 'F', 'Flags'],
                template_instantiations='rm.tcc'),
     ]
@@ -95,18 +107,13 @@ if __name__ == '__main__':
             '--wrap-macro-constants',
             '--wrap-skip-unwrappable',
             '--wrap-noexcept',
+            '--output-custom-type-translation-rules-directory', 'type_translation_rules',
             '--output-directory', f'../server/src/{backend}/bind',
             '--output-cpp-header-extension', '.h',
             '--output-cpp-source-extension', '.cc',
             '--lua-include-cpp',
             '--verbosity', '2',
+            '--'
         ]
-
-        tt_rules = f'{backend}_type_translation_rules.py'
-
-        if os.path.exists(tt_rules):
-            cppbind_args += ['--output-custom-type-translation-rules', tt_rules]
-
-        cppbind_args.append('--')
 
         subprocess.run(cppbind_args, check=True)

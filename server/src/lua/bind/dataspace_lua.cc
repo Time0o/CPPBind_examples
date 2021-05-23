@@ -3,20 +3,234 @@
 #include "lua.h"
 #include "lauxlib.h"
 
+#include "/home/timo/github/projects/cppbind/generate/cppbind/lua/lua_util.h"
+
 #include "/home/timo/github/l4re/l4/pkg/l4re-core/l4re/include/dataspace"
 
-#include "cppbind/type_info.h"
+#include "/home/timo/github/projects/cppbind/generate/cppbind/type_info.h"
 
 namespace cppbind::type_info {
+  type_instance<L4Re::Dataspace> _ZTSN4L4Re9DataspaceE;
   type_instance<L4Re::Dataspace::F> _ZTSN4L4Re9Dataspace1FE;
   type_instance<L4Re::Dataspace::Flags> _ZTSN4L4Re9Dataspace5FlagsE;
-  type_instance<L4Re::Dataspace> _ZTSN4L4Re9DataspaceE;
+  type_instance<L4::Ipc::Cap<L4Re::Dataspace>> _ZTSN2L43Ipc3CapIN4L4Re9DataspaceEEE;
+  type_instance<L4::Cap<L4Re::Dataspace>> HELPER__ZTSN2L43Ipc3CapIN4L4Re9DataspaceEEE;
 }
-
-#include "cppbind/lua/lua_util.h"
 
 namespace
 {
+
+int l4_re_dataspace_map(lua_State *L)
+{
+  if (lua_gettop(L) != 6)
+    return luaL_error(L, "function expects 6 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Dataspace * ___self;
+  L4Re::Dataspace::Offset _offset;
+  L4Re::Dataspace::Flags _flags_proxy;
+  const L4Re::Dataspace::Flags * _flags;
+  L4Re::Dataspace::Map_addr _local_addr;
+  L4Re::Dataspace::Map_addr _min_addr;
+  L4Re::Dataspace::Map_addr _max_addr;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _offset = cppbind::lua::tointegral<L4Re::Dataspace::Offset>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _flags_proxy = L4Re::Dataspace::Flags(cppbind::lua::tointegral<unsigned long>(L, 3));
+  _flags = &_flags_proxy;
+
+  luaL_checktype(L, 4, LUA_TNUMBER);
+  _local_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 4);
+
+  luaL_checktype(L, 5, LUA_TNUMBER);
+  _min_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 5);
+
+  luaL_checktype(L, 6, LUA_TNUMBER);
+  _max_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 6);
+
+  auto __out = ___self->map(_offset, *_flags, _local_addr, _min_addr, _max_addr);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_dataspace_map_region(lua_State *L)
+{
+  if (lua_gettop(L) != 5)
+    return luaL_error(L, "function expects 5 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Dataspace * ___self;
+  L4Re::Dataspace::Offset _offset;
+  L4Re::Dataspace::Flags _flags_proxy;
+  const L4Re::Dataspace::Flags * _flags;
+  L4Re::Dataspace::Map_addr _min_addr;
+  L4Re::Dataspace::Map_addr _max_addr;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _offset = cppbind::lua::tointegral<L4Re::Dataspace::Offset>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _flags_proxy = L4Re::Dataspace::Flags(cppbind::lua::tointegral<unsigned long>(L, 3));
+  _flags = &_flags_proxy;
+
+  luaL_checktype(L, 4, LUA_TNUMBER);
+  _min_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 4);
+
+  luaL_checktype(L, 5, LUA_TNUMBER);
+  _max_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 5);
+
+  auto __out = ___self->map_region(_offset, *_flags, _min_addr, _max_addr);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_dataspace_size(lua_State *L)
+{
+  if (lua_gettop(L) != 1)
+    return luaL_error(L, "function expects 1 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Dataspace * ___self;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  auto __out = ___self->size();
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_dataspace_flags(lua_State *L)
+{
+  if (lua_gettop(L) != 1)
+    return luaL_error(L, "function expects 1 arguments");
+
+  using namespace L4Re;
+
+  const L4Re::Dataspace * ___self;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  auto __out = ___self->flags();
+
+  *static_cast<void **>(lua_newuserdata(L, sizeof(void *))) = cppbind::type_info::make_typed(new L4Re::Dataspace::Flags(__out), true);
+  cppbind::lua::setmetatable(L, "METATABLE__ZTSN4L4Re9Dataspace5FlagsE");;
+
+  return 1;
+}
+
+int l4_re_dataspace_clear(lua_State *L)
+{
+  if (lua_gettop(L) != 3)
+    return luaL_error(L, "function expects 3 arguments");
+
+  using namespace L4;
+  using namespace Ipc;
+  using namespace Msg;
+
+  const L4Re::Dataspace * ___self;
+  unsigned long long _a_1;
+  unsigned long long _a_2;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _a_1 = cppbind::lua::tointegral<unsigned long long>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _a_2 = cppbind::lua::tointegral<unsigned long long>(L, 3);
+
+  auto __out = ___self->clear(_a_1, _a_2);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_dataspace_allocate(lua_State *L)
+{
+  if (lua_gettop(L) != 3)
+    return luaL_error(L, "function expects 3 arguments");
+
+  using namespace L4;
+  using namespace Ipc;
+  using namespace Msg;
+
+  const L4Re::Dataspace * ___self;
+  unsigned long long _a_1;
+  unsigned long long _a_2;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _a_1 = cppbind::lua::tointegral<unsigned long long>(L, 2);
+
+  luaL_checktype(L, 3, LUA_TNUMBER);
+  _a_2 = cppbind::lua::tointegral<unsigned long long>(L, 3);
+
+  auto __out = ___self->allocate(_a_1, _a_2);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
+
+int l4_re_dataspace_copy_in(lua_State *L)
+{
+  if (lua_gettop(L) != 5)
+    return luaL_error(L, "function expects 5 arguments");
+
+  using namespace L4;
+  using namespace Ipc;
+  using namespace Msg;
+
+  const L4Re::Dataspace * ___self;
+  unsigned long long _a_1;
+  const L4::Ipc::Cap<L4Re::Dataspace> * _a_2;
+  unsigned long long _a_3;
+  unsigned long long _a_4;
+
+  luaL_checktype(L, 1, LUA_TUSERDATA);
+  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
+
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _a_1 = cppbind::lua::tointegral<unsigned long long>(L, 2);
+
+  auto __a_2 = L4::Ipc::Cap<L4Re::Dataspace>(*cppbind::type_info::typed_pointer_cast<L4::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 3))));
+  _a_2 = &__a_2;
+
+  luaL_checktype(L, 4, LUA_TNUMBER);
+  _a_3 = cppbind::lua::tointegral<unsigned long long>(L, 4);
+
+  luaL_checktype(L, 5, LUA_TNUMBER);
+  _a_4 = cppbind::lua::tointegral<unsigned long long>(L, 5);
+
+  auto __out = ___self->copy_in(_a_1, *_a_2, _a_3, _a_4);
+
+  cppbind::lua::pushintegral(L, __out);
+
+  return 1;
+}
 
 int l4_re_dataspace_f_new(lua_State *L)
 {
@@ -173,13 +387,15 @@ int l4_re_dataspace_flags_bw_or_assign(lua_State *L)
   using namespace Types;
 
   L4Re::Dataspace::Flags * ___self;
+  L4Re::Dataspace::Flags _r_proxy;
   const L4Re::Dataspace::Flags * _r;
 
   luaL_checktype(L, 1, LUA_TUSERDATA);
   ___self = cppbind::type_info::typed_pointer_cast<L4Re::Dataspace::Flags>(*static_cast<void **>(lua_touserdata(L, 1)));
 
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _r = cppbind::type_info::typed_pointer_cast<L4Re::Dataspace::Flags>(*static_cast<void **>(lua_touserdata(L, 2)));
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _r_proxy = L4Re::Dataspace::Flags(cppbind::lua::tointegral<unsigned long>(L, 2));
+  _r = &_r_proxy;
 
   auto __out = ___self->operator|=(*_r);
 
@@ -198,13 +414,15 @@ int l4_re_dataspace_flags_bw_and_assign(lua_State *L)
   using namespace Types;
 
   L4Re::Dataspace::Flags * ___self;
+  L4Re::Dataspace::Flags _r_proxy;
   const L4Re::Dataspace::Flags * _r;
 
   luaL_checktype(L, 1, LUA_TUSERDATA);
   ___self = cppbind::type_info::typed_pointer_cast<L4Re::Dataspace::Flags>(*static_cast<void **>(lua_touserdata(L, 1)));
 
-  luaL_checktype(L, 2, LUA_TUSERDATA);
-  _r = cppbind::type_info::typed_pointer_cast<L4Re::Dataspace::Flags>(*static_cast<void **>(lua_touserdata(L, 2)));
+  luaL_checktype(L, 2, LUA_TNUMBER);
+  _r_proxy = L4Re::Dataspace::Flags(cppbind::lua::tointegral<unsigned long>(L, 2));
+  _r = &_r_proxy;
 
   auto __out = ___self->operator&=(*_r);
 
@@ -255,217 +473,25 @@ int l4_re_dataspace_flags_bw_not(lua_State *L)
   return 1;
 }
 
-int l4_re_dataspace_map(lua_State *L)
-{
-  if (lua_gettop(L) != 6)
-    return luaL_error(L, "function expects 6 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Dataspace * ___self;
-  L4Re::Dataspace::Offset _offset;
-  const L4Re::Dataspace::Flags * _flags;
-  L4Re::Dataspace::Map_addr _local_addr;
-  L4Re::Dataspace::Map_addr _min_addr;
-  L4Re::Dataspace::Map_addr _max_addr;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _offset = cppbind::lua::tointegral<L4Re::Dataspace::Offset>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TUSERDATA);
-  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Dataspace::Flags>(*static_cast<void **>(lua_touserdata(L, 3)));
-
-  luaL_checktype(L, 4, LUA_TNUMBER);
-  _local_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 4);
-
-  luaL_checktype(L, 5, LUA_TNUMBER);
-  _min_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 5);
-
-  luaL_checktype(L, 6, LUA_TNUMBER);
-  _max_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 6);
-
-  auto __out = ___self->map(_offset, *_flags, _local_addr, _min_addr, _max_addr);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_dataspace_map_region(lua_State *L)
-{
-  if (lua_gettop(L) != 5)
-    return luaL_error(L, "function expects 5 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Dataspace * ___self;
-  L4Re::Dataspace::Offset _offset;
-  const L4Re::Dataspace::Flags * _flags;
-  L4Re::Dataspace::Map_addr _min_addr;
-  L4Re::Dataspace::Map_addr _max_addr;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _offset = cppbind::lua::tointegral<L4Re::Dataspace::Offset>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TUSERDATA);
-  _flags = cppbind::type_info::typed_pointer_cast<L4Re::Dataspace::Flags>(*static_cast<void **>(lua_touserdata(L, 3)));
-
-  luaL_checktype(L, 4, LUA_TNUMBER);
-  _min_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 4);
-
-  luaL_checktype(L, 5, LUA_TNUMBER);
-  _max_addr = cppbind::lua::tointegral<L4Re::Dataspace::Map_addr>(L, 5);
-
-  auto __out = ___self->map_region(_offset, *_flags, _min_addr, _max_addr);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_dataspace_size(lua_State *L)
-{
-  if (lua_gettop(L) != 1)
-    return luaL_error(L, "function expects 1 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Dataspace * ___self;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  auto __out = ___self->size();
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_dataspace_flags(lua_State *L)
-{
-  if (lua_gettop(L) != 1)
-    return luaL_error(L, "function expects 1 arguments");
-
-  using namespace L4Re;
-
-  const L4Re::Dataspace * ___self;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  auto __out = ___self->flags();
-
-  *static_cast<void **>(lua_newuserdata(L, sizeof(void *))) = cppbind::type_info::make_typed(new L4Re::Dataspace::Flags(__out), true);
-  cppbind::lua::setmetatable(L, "METATABLE__ZTSN4L4Re9Dataspace5FlagsE");;
-
-  return 1;
-}
-
-int l4_re_dataspace_clear(lua_State *L)
-{
-  if (lua_gettop(L) != 3)
-    return luaL_error(L, "function expects 3 arguments");
-
-  using namespace L4;
-  using namespace Ipc;
-  using namespace Msg;
-
-  const L4Re::Dataspace * ___self;
-  unsigned long long _a_1;
-  unsigned long long _a_2;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _a_1 = cppbind::lua::tointegral<unsigned long long>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _a_2 = cppbind::lua::tointegral<unsigned long long>(L, 3);
-
-  auto __out = ___self->clear(_a_1, _a_2);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_dataspace_allocate(lua_State *L)
-{
-  if (lua_gettop(L) != 3)
-    return luaL_error(L, "function expects 3 arguments");
-
-  using namespace L4;
-  using namespace Ipc;
-  using namespace Msg;
-
-  const L4Re::Dataspace * ___self;
-  unsigned long long _a_1;
-  unsigned long long _a_2;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _a_1 = cppbind::lua::tointegral<unsigned long long>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TNUMBER);
-  _a_2 = cppbind::lua::tointegral<unsigned long long>(L, 3);
-
-  auto __out = ___self->allocate(_a_1, _a_2);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
-int l4_re_dataspace_copy_in(lua_State *L)
-{
-  if (lua_gettop(L) != 5)
-    return luaL_error(L, "function expects 5 arguments");
-
-  using namespace L4;
-  using namespace Ipc;
-  using namespace Msg;
-
-  const L4Re::Dataspace * ___self;
-  unsigned long long _a_1;
-  const L4::Ipc::Cap<L4Re::Dataspace> * _a_2;
-  unsigned long long _a_3;
-  unsigned long long _a_4;
-
-  luaL_checktype(L, 1, LUA_TUSERDATA);
-  ___self = cppbind::type_info::typed_pointer_cast<const L4Re::Dataspace>(*static_cast<void **>(lua_touserdata(L, 1)));
-
-  luaL_checktype(L, 2, LUA_TNUMBER);
-  _a_1 = cppbind::lua::tointegral<unsigned long long>(L, 2);
-
-  luaL_checktype(L, 3, LUA_TUSERDATA);
-  _a_2 = cppbind::type_info::typed_pointer_cast<L4::Ipc::Cap<L4Re::Dataspace>>(*static_cast<void **>(lua_touserdata(L, 3)));
-
-  luaL_checktype(L, 4, LUA_TNUMBER);
-  _a_3 = cppbind::lua::tointegral<unsigned long long>(L, 4);
-
-  luaL_checktype(L, 5, LUA_TNUMBER);
-  _a_4 = cppbind::lua::tointegral<unsigned long long>(L, 5);
-
-  auto __out = ___self->copy_in(_a_1, *_a_2, _a_3, _a_4);
-
-  cppbind::lua::pushintegral(L, __out);
-
-  return 1;
-}
-
 void _register(lua_State *L)
 {
   lua_createtable(L, 0, 0);
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
+
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "L4Cap");
 
   lua_createtable(L, 0, 0);
 
@@ -508,6 +534,10 @@ void _register(lua_State *L)
   lua_pushinteger(L, L4Re::Dataspace::F::Caching_mask);
   lua_setfield(L, -2, "DATASPACE_F_CACHING_MASK");
 
+  lua_createtable(L, 0, 0);
+
+  lua_setfield(L, -2, "Dataspace");
+
   lua_createtable(L, 0, 1);
 
   {
@@ -536,15 +566,22 @@ void _register(lua_State *L)
 
   lua_setfield(L, -2, "DataspaceFlags");
 
-  lua_createtable(L, 0, 0);
-
-  lua_setfield(L, -2, "Dataspace");
-
   lua_setfield(L, -2, "L4Re");
 }
 
 void _createmetatables(lua_State *L)
 {
+  cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re9DataspaceE",
+    {
+      {"map", l4_re_dataspace_map},
+      {"map_region", l4_re_dataspace_map_region},
+      {"size", l4_re_dataspace_size},
+      {"flags", l4_re_dataspace_flags},
+      {"clear", l4_re_dataspace_clear},
+      {"allocate", l4_re_dataspace_allocate},
+      {"copy_in", l4_re_dataspace_copy_in}
+    });
+
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re9Dataspace1FE", {});
 
   cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re9Dataspace5FlagsE",
@@ -557,17 +594,6 @@ void _createmetatables(lua_State *L)
       {"bw_and_assign", l4_re_dataspace_flags_bw_and_assign},
       {"cast_bool", l4_re_dataspace_flags_cast_bool},
       {"bw_not", l4_re_dataspace_flags_bw_not}
-    });
-
-  cppbind::lua::createmetatable(L, "METATABLE__ZTSN4L4Re9DataspaceE",
-    {
-      {"map", l4_re_dataspace_map},
-      {"map_region", l4_re_dataspace_map_region},
-      {"size", l4_re_dataspace_size},
-      {"flags", l4_re_dataspace_flags},
-      {"clear", l4_re_dataspace_clear},
-      {"allocate", l4_re_dataspace_allocate},
-      {"copy_in", l4_re_dataspace_copy_in}
     });
 }
 

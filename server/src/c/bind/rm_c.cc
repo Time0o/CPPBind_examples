@@ -15,6 +15,347 @@ extern "C" {
 
 #include "/home/timo/github/l4re/l4/pkg/l4re-c-examples/server/src/c/bind/rm_c.h"
 
+long l4_re_rm_reserve_area(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, unsigned char align)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t * _start;
+  unsigned long _size;
+  L4Re::Rm::Flags _flags_proxy;
+  const L4Re::Rm::Flags _flags_default = L4Re::Rm::Flags(0);
+  const L4Re::Rm::Flags * _flags = &_flags_default;
+  unsigned char _align = 12;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _start = start;
+
+  _size = size;
+
+  auto __flags = L4Re::Rm::Flags(flags);
+  _flags = &__flags;
+
+  _align = align;
+
+  auto __out = ___self->reserve_area(_start, _size, *_flags, _align);
+
+  long __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+long l4_re_rm_attach(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t * _start;
+  unsigned long _size;
+  L4Re::Rm::Flags _flags_proxy;
+  const L4Re::Rm::Flags * _flags;
+  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
+  L4Re::Rm::Offset _offs = 0;
+  unsigned char _align = 12;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _start = start;
+
+  _size = size;
+
+  auto __flags = L4Re::Rm::Flags(flags);
+  _flags = &__flags;
+
+  auto __mem = L4::Ipc::Cap<L4Re::Dataspace>(L4::Cap<L4Re::Dataspace>(mem));
+  _mem = &__mem;
+
+  _offs = offs;
+
+  _align = align;
+
+  auto __out = ___self->attach(_start, _size, *_flags, *_mem, _offs, _align);
+
+  long __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+int l4_re_rm_detach_1(const struct l4_re_rm * __self, l4_addr_t addr, l4_cap_idx_t mem, l4_cap_idx_t task)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t _addr;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> _task_default = This_task;
+  const L4::Cap<L4::Task> * _task = &_task_default;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _addr = addr;
+
+  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
+  _mem = &__mem;
+
+  auto __task = L4::Cap<L4::Task>(task);
+  _task = &__task;
+
+  auto __out = ___self->detach(_addr, _mem, *_task);
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+int l4_re_rm_detach_2(const struct l4_re_rm * __self, void * addr, l4_cap_idx_t mem, l4_cap_idx_t task)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  void * _addr;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> _task_default = This_task;
+  const L4::Cap<L4::Task> * _task = &_task_default;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _addr = addr;
+
+  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
+  _mem = &__mem;
+
+  auto __task = L4::Cap<L4::Task>(task);
+  _task = &__task;
+
+  auto __out = ___self->detach(_addr, _mem, *_task);
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+int l4_re_rm_detach_3(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t _start;
+  unsigned long _size;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> * _task;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _start = start;
+
+  _size = size;
+
+  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
+  _mem = &__mem;
+
+  auto __task = L4::Cap<L4::Task>(task);
+  _task = &__task;
+
+  auto __out = ___self->detach(_start, _size, _mem, *_task);
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+int l4_re_rm_find(struct l4_re_rm * __self, l4_addr_t * addr, unsigned long * size, l4_re_rm_offset_t * offset, l4_re_rm_flags_t * flags, l4_cap_idx_t m)
+{
+  using namespace L4Re;
+
+  L4Re::Rm * ___self;
+  l4_addr_t * _addr;
+  unsigned long * _size;
+  L4Re::Rm::Offset * _offset;
+  L4Re::Rm::Flags * _flags;
+  L4::Cap<L4Re::Dataspace> * _m;
+
+  assert(__self->is_initialized);
+  assert(!__self->is_const);
+  ___self = cppbind::c::struct_cast<L4Re::Rm>(__self);
+
+  _addr = addr;
+
+  _size = size;
+
+  _offset = offset;
+
+  assert(flags->is_initialized);
+  assert(!flags->is_const);
+  _flags = cppbind::c::struct_cast<L4Re::Rm::Flags>(flags);
+
+  auto __m = L4::Cap<L4Re::Dataspace>(m);
+  _m = &__m;
+
+  auto __out = ___self->find(_addr, _size, _offset, _flags, _m);
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+int l4_re_rm_detach_4(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task, unsigned int flags)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  l4_addr_t _start;
+  unsigned long _size;
+  L4::Cap<L4Re::Dataspace> * _mem;
+  const L4::Cap<L4::Task> * _task;
+  unsigned int _flags;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _start = start;
+
+  _size = size;
+
+  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
+  _mem = &__mem;
+
+  auto __task = L4::Cap<L4::Task>(task);
+  _task = &__task;
+
+  _flags = flags;
+
+  auto __out = ___self->detach(_start, _size, _mem, *_task, _flags);
+
+  int __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+void l4_re_rm_delete(struct l4_re_rm * __self)
+{
+  using namespace L4Re;
+
+  L4Re::Rm * ___self;
+
+  if (!__self->is_initialized) return;
+  ___self = cppbind::c::struct_cast<L4Re::Rm>(__self);
+
+  ___self->~Rm();
+}
+
+long l4_re_rm_attach_void(const struct l4_re_rm * __self, void ** start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align)
+{
+  using namespace L4Re;
+
+  const L4Re::Rm * ___self;
+  void ** _start;
+  unsigned long _size;
+  L4Re::Rm::Flags _flags_proxy;
+  const L4Re::Rm::Flags * _flags;
+  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
+  L4Re::Rm::Offset _offs = 0;
+  unsigned char _align = 12;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _start = start;
+
+  _size = size;
+
+  auto __flags = L4Re::Rm::Flags(flags);
+  _flags = &__flags;
+
+  auto __mem = L4::Ipc::Cap<L4Re::Dataspace>(L4::Cap<L4Re::Dataspace>(mem));
+  _mem = &__mem;
+
+  _offs = offs;
+
+  _align = align;
+
+  auto __out = ___self->attach<void>(_start, _size, *_flags, *_mem, _offs, _align);
+
+  long __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+long l4_re_rm_free_area(const struct l4_re_rm * __self, unsigned long a)
+{
+  using namespace L4;
+  using namespace Ipc;
+  using namespace Msg;
+
+  const L4Re::Rm * ___self;
+  unsigned long _a;
+
+  assert(__self->is_initialized);
+  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
+
+  _a = a;
+
+  auto __out = ___self->free_area(_a);
+
+  long __ret;
+
+  __ret = __out;
+
+  return __ret;
+}
+
+struct l4_re_rm_f l4_re_rm_f_new(void)
+{
+  using namespace L4Re;
+
+  char __buf[1];
+
+  auto __out = new (__buf) L4Re::Rm::F();
+
+  struct l4_re_rm_f __ret;
+
+  static_cast<void>(__out);
+
+  struct l4_re_rm_f __tmp;
+  cppbind::c::make_owning_struct_mem<L4Re::Rm::F>(&__tmp, __buf);
+  __ret = __tmp;
+
+  return __ret;
+}
+
+void l4_re_rm_f_delete(struct l4_re_rm_f * __self)
+{
+  using namespace L4Re;
+
+  L4Re::Rm::F * ___self;
+
+  if (!__self->is_initialized) return;
+  ___self = cppbind::c::struct_cast<L4Re::Rm::F>(__self);
+
+  ___self->~F();
+}
+
 struct l4_re_rm_f_flags l4_re_rm_f_flags_new_1(void)
 {
   using namespace L4Re;
@@ -278,6 +619,7 @@ struct l4_re_rm_f_flags l4_re_rm_f_flags_bw_or_assign(struct l4_re_rm_f_flags * 
   using namespace Types;
 
   L4Re::Rm::F::Flags * ___self;
+  L4Re::Rm::F::Flags _r_proxy;
   const L4Re::Rm::F::Flags * _r;
 
   assert(__self->is_initialized);
@@ -304,6 +646,7 @@ struct l4_re_rm_f_flags l4_re_rm_f_flags_bw_and_assign(struct l4_re_rm_f_flags *
   using namespace Types;
 
   L4Re::Rm::F::Flags * ___self;
+  L4Re::Rm::F::Flags _r_proxy;
   const L4Re::Rm::F::Flags * _r;
 
   assert(__self->is_initialized);
@@ -360,344 +703,6 @@ struct l4_re_rm_f_flags l4_re_rm_f_flags_bw_not(const struct l4_re_rm_f_flags * 
   struct l4_re_rm_f_flags __tmp;
   cppbind::c::make_owning_struct_args<L4Re::Rm::F::Flags>(&__tmp, __out);
   __ret = __tmp;
-
-  return __ret;
-}
-
-struct l4_re_rm_f l4_re_rm_f_new(void)
-{
-  using namespace L4Re;
-
-  char __buf[1];
-
-  auto __out = new (__buf) L4Re::Rm::F();
-
-  struct l4_re_rm_f __ret;
-
-  static_cast<void>(__out);
-
-  struct l4_re_rm_f __tmp;
-  cppbind::c::make_owning_struct_mem<L4Re::Rm::F>(&__tmp, __buf);
-  __ret = __tmp;
-
-  return __ret;
-}
-
-void l4_re_rm_f_delete(struct l4_re_rm_f * __self)
-{
-  using namespace L4Re;
-
-  L4Re::Rm::F * ___self;
-
-  if (!__self->is_initialized) return;
-  ___self = cppbind::c::struct_cast<L4Re::Rm::F>(__self);
-
-  ___self->~F();
-}
-
-long l4_re_rm_reserve_area(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, unsigned char align)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t * _start;
-  unsigned long _size;
-  const L4Re::Rm::Flags _flags_default = L4Re::Rm::Flags(0);
-  const L4Re::Rm::Flags * _flags = &_flags_default;;
-  unsigned char _align = 12;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _start = start;
-
-  _size = size;
-
-  auto __flags = L4Re::Rm::Flags(flags);
-  _flags = &__flags;
-
-  _align = align;
-
-  auto __out = ___self->reserve_area(_start, _size, *_flags, _align);
-
-  long __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-long l4_re_rm_attach(const struct l4_re_rm * __self, l4_addr_t * start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t * _start;
-  unsigned long _size;
-  const L4Re::Rm::Flags * _flags;
-  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
-  L4Re::Rm::Offset _offs = 0;
-  unsigned char _align = 12;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _start = start;
-
-  _size = size;
-
-  auto __flags = L4Re::Rm::Flags(flags);
-  _flags = &__flags;
-
-  auto __mem = L4::Ipc::Cap<L4Re::Dataspace>(L4::Cap<L4Re::Dataspace>(mem));
-  _mem = &__mem;
-
-  _offs = offs;
-
-  _align = align;
-
-  auto __out = ___self->attach(_start, _size, *_flags, *_mem, _offs, _align);
-
-  long __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_re_rm_detach_1(const struct l4_re_rm * __self, l4_addr_t addr, l4_cap_idx_t mem, l4_cap_idx_t task)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t _addr;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> _task_default = This_task;
-  const L4::Cap<L4::Task> * _task = &_task_default;;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _addr = addr;
-
-  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
-  _mem = &__mem;
-
-  auto __task = L4::Cap<L4::Task>(task);
-  _task = &__task;
-
-  auto __out = ___self->detach(_addr, _mem, *_task);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_re_rm_detach_2(const struct l4_re_rm * __self, void * addr, l4_cap_idx_t mem, l4_cap_idx_t task)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  void * _addr;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> _task_default = This_task;
-  const L4::Cap<L4::Task> * _task = &_task_default;;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _addr = addr;
-
-  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
-  _mem = &__mem;
-
-  auto __task = L4::Cap<L4::Task>(task);
-  _task = &__task;
-
-  auto __out = ___self->detach(_addr, _mem, *_task);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_re_rm_detach_3(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t _start;
-  unsigned long _size;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> * _task;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _start = start;
-
-  _size = size;
-
-  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
-  _mem = &__mem;
-
-  auto __task = L4::Cap<L4::Task>(task);
-  _task = &__task;
-
-  auto __out = ___self->detach(_start, _size, _mem, *_task);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_re_rm_find(struct l4_re_rm * __self, l4_addr_t * addr, unsigned long * size, l4_re_rm_offset_t * offset, l4_re_rm_flags_t * flags, l4_cap_idx_t m)
-{
-  using namespace L4Re;
-
-  L4Re::Rm * ___self;
-  l4_addr_t * _addr;
-  unsigned long * _size;
-  L4Re::Rm::Offset * _offset;
-  L4Re::Rm::Flags * _flags;
-  L4::Cap<L4Re::Dataspace> * _m;
-
-  assert(__self->is_initialized);
-  assert(!__self->is_const);
-  ___self = cppbind::c::struct_cast<L4Re::Rm>(__self);
-
-  _addr = addr;
-
-  _size = size;
-
-  _offset = offset;
-
-  assert(flags->is_initialized);
-  assert(!flags->is_const);
-  _flags = cppbind::c::struct_cast<L4Re::Rm::Flags>(flags);
-
-  auto __m = L4::Cap<L4Re::Dataspace>(m);
-  _m = &__m;
-
-  auto __out = ___self->find(_addr, _size, _offset, _flags, _m);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-int l4_re_rm_detach_4(const struct l4_re_rm * __self, l4_addr_t start, unsigned long size, l4_cap_idx_t mem, l4_cap_idx_t task, unsigned int flags)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  l4_addr_t _start;
-  unsigned long _size;
-  L4::Cap<L4Re::Dataspace> * _mem;
-  const L4::Cap<L4::Task> * _task;
-  unsigned int _flags;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _start = start;
-
-  _size = size;
-
-  auto __mem = L4::Cap<L4Re::Dataspace>(mem);
-  _mem = &__mem;
-
-  auto __task = L4::Cap<L4::Task>(task);
-  _task = &__task;
-
-  _flags = flags;
-
-  auto __out = ___self->detach(_start, _size, _mem, *_task, _flags);
-
-  int __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-void l4_re_rm_delete(struct l4_re_rm * __self)
-{
-  using namespace L4Re;
-
-  L4Re::Rm * ___self;
-
-  if (!__self->is_initialized) return;
-  ___self = cppbind::c::struct_cast<L4Re::Rm>(__self);
-
-  ___self->~Rm();
-}
-
-long l4_re_rm_attach_void(const struct l4_re_rm * __self, void ** start, unsigned long size, l4_uint_32_t flags, l4_cap_idx_t mem, l4_re_rm_offset_t offs, unsigned char align)
-{
-  using namespace L4Re;
-
-  const L4Re::Rm * ___self;
-  void ** _start;
-  unsigned long _size;
-  const L4Re::Rm::Flags * _flags;
-  const L4::Ipc::Cap<L4Re::Dataspace> * _mem;
-  L4Re::Rm::Offset _offs = 0;
-  unsigned char _align = 12;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _start = start;
-
-  _size = size;
-
-  auto __flags = L4Re::Rm::Flags(flags);
-  _flags = &__flags;
-
-  auto __mem = L4::Ipc::Cap<L4Re::Dataspace>(L4::Cap<L4Re::Dataspace>(mem));
-  _mem = &__mem;
-
-  _offs = offs;
-
-  _align = align;
-
-  auto __out = ___self->attach<void>(_start, _size, *_flags, *_mem, _offs, _align);
-
-  long __ret;
-
-  __ret = __out;
-
-  return __ret;
-}
-
-long l4_re_rm_free_area(const struct l4_re_rm * __self, unsigned long a)
-{
-  using namespace L4;
-  using namespace Ipc;
-  using namespace Msg;
-
-  const L4Re::Rm * ___self;
-  unsigned long _a;
-
-  assert(__self->is_initialized);
-  ___self = cppbind::c::struct_cast<const L4Re::Rm>(__self);
-
-  _a = a;
-
-  auto __out = ___self->free_area(_a);
-
-  long __ret;
-
-  __ret = __out;
 
   return __ret;
 }

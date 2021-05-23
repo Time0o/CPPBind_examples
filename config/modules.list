@@ -1,6 +1,14 @@
-entry cppbind-example-dataspace
+entry cppbind-example-dataspace-c
 kernel fiasco -servial_esc
-roottask moe rom/example_dataspace.cfg
+roottask moe rom/example_dataspace_c.cfg
+module l4re
+module ned
+module example_dataspace_c.cfg
+module example_dataspace
+
+entry cppbind-example-dataspace-lua
+kernel fiasco -servial_esc
+roottask moe rom/example_dataspace_lua.cfg
 module l4re
 module ned
 module lua
@@ -21,10 +29,13 @@ module libld-l4.so
 module libdl.so
 module libc_support_misc.so
 module libc_be_socket_noop.so
-module example_dataspace.cfg
+module example_dataspace_lua.cfg
 module example_dataspace.lua
+module consts.so
+module cap_alloc.so
 module capability.so
 module dataspace.so
 module env.so
 module mem_alloc.so
 module rm.so
+module util.so

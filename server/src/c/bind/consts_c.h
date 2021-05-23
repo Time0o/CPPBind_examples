@@ -7,9 +7,9 @@ extern "C" {
 
 #include "cppbind/c/c_bind_error_c.h"
 
-#define L4_PAGESHIFT 12
+int get_l4_pageshift(void);
 
-#define L4_SUPERPAGESHIFT 22
+int get_l4_superpageshift(void);
 
 #ifdef __cplusplus
 } // extern "C"
